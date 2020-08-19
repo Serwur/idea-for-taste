@@ -1,0 +1,38 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.row.ingr-item {
+    background-color: cornflowerblue;
+    border: solid wheat 1px;
+    color: antiquewhite;
+}
+
+.loading-block {
+    margin-top: 250px;
+    display: block;
+}
+
+.top-navbar-offset {
+    display: block;
+    margin-top: 55px;
+}
+
+.nav-item:hover {
+    background-color: #d1ecf1;
+    border-radius: 2px;
+}
+
+.owned-ingr {
+    color: green;
+    font-weight: bold;
+}
+
+.miss-ingr, .help-block {
+    color: red;
+}
+
+.has-error>input, .has-error>input:focus{
+    border-color: red;
+    border-width: 1px;
+}
