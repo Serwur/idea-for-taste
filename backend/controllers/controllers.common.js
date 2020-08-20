@@ -25,7 +25,7 @@ exports.findByPk = (model) => {
 exports.defHandleData = (req, res) => {
     return (data) => {
         if (data) {
-            res.json(data);
+            res.status(200).json(data);
         } else {
             res.sendStatus(404);
         }

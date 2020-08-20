@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
+
 import ChoosenIngredientsListItem from "../search-meal-by-ingredients/MealSearchIngredientListItem";
-import { Redirect, useHistory } from "react-router-dom";
-import FoundMealsPage from "./FoundMealsPage.component";
+import { useHistory } from "react-router-dom";
 
 export default function ChoosenIngredientsList({ ingredients, removeItem }) {
     const history = useHistory();

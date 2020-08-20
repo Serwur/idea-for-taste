@@ -7,10 +7,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
 import "./index.css";
 
-import IngredientSearch from './components/IngredientSearch.component';
-import MealByIngredientSearchPage from './pages/MealByIngredientSearchPage.component';
-import StandardIngredietListItem from './components/ingredient-list-item.component';
-import FoundMealsPage from './components/search-meal-by-ingredients/FoundMealsPage.component';
+import IngredientSearch from './components/ingredient/IngredientSearch.component';
+import MealByIngredientSearchPage from './components/pages/MealByIngredientSearchPage.component';
+import StandardIngredietListItem from './components/ingredient/IngredientListItem.component';
+import FoundMealsPage from './components/meal/FoundMealsPage.component';
 import TopNavbar from './components/navbar/TopNavbar.component';
 import LoginForm from './components/login/LoginForm.component';
 import RegisterForm from './components/login/RegisterForm.component';

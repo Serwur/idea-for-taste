@@ -11,6 +11,8 @@ const port = createPort(5000);
 applyRoute(app, "../routes/ingredient.route", "/ingredient");
 applyRoute(app, "../routes/meal_components.route.js", "/mealComponents")
 applyRoute(app, "../routes/meal.route.js", "/meal");
+applyRoute(app, "../routes/user.route.js", "/user");
+
 startAppListen(app, port);
 
 function createPort(portNumber) {

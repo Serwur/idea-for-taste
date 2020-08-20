@@ -1,7 +1,7 @@
 import LoadingComponent from "./loading.component";
 import IngredientListItem from './ingredient-list-item.component';
-import React, { useState, useEffect } from './node_modules/react';
-import { useParams } from "./node_modules/react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
 
 export default function IngredientPage() {
     const IngredientItem = LoadingComponent(IngredientListItem);

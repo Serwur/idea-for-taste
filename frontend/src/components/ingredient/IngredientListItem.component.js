@@ -1,4 +1,4 @@
-import React from "./node_modules/react";
+import React from "react";
 
 export default function StandardIngredietListItem({ ingredient }) {
     const { name, alcohol, carbohydrate, fat, organic_acid, protein, roughage, salt, sugar, water } = ingredient;

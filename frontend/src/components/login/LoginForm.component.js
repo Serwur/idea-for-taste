@@ -1,10 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import validateInput from "../../utility/validateInput";
 import TextFieldGroup from "../common/TextFieldGroup.component";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { login } from "../../services/login.service";
+import { loginRequest } from "../../services/user.service";
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -38,7 +38,12 @@ class LoginForm extends React.Component {
             this.setState({ validationError: {}, isLoading: true });
             this.props.login(this.state).then(
                 res => this.context.router.push("/"),
-                err => this.setState({ validationError: "Ups... propably there is problem with connection", isLoading: false })
+                err => this.setState({
+                    validationError: {
+                        general: "Ups... propably there is problem with connection"
+                    },
+                    isLoading: false
+                })
             );
         }
     }
@@ -78,6 +83,7 @@ class LoginForm extends React.Component {
                         Login
                 </button>
                 </div>
+                {validationError.general ? <div className="alert alert-danger">{validationError.general}</div> : <></>}
             </form>
         );
     }
@@ -91,4 +97,4 @@ LoginForm.contextTypes = {
     router: PropTypes.object.isRequired
 }
 
-export default connect(null, { login })(LoginForm);
+export default connect(null, { login: loginRequest })(LoginForm);

@@ -1,11 +1,11 @@
-import React from "./node_modules/react";
+import React from "react";
 import * as IngrUtils from "../../utility/ingredients-funs";
 
-import { LoopCircleLoading as Loading } from "./node_modules/react-loadingg";
+import { LoopCircleLoading as Loading } from "react-loadingg";
 
 import {renderLoading} from "../common/common"
 import IngredientSearchForm from "./IngredientSearchForm.component";
-import IngredientList from "../IngredientList.component";
+import IngredientList from "./IngredientList.component";
 import { DATABASE_URL } from "../../utility/constants";
 
 const SEARCH_STATE = {

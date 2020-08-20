@@ -1,7 +1,7 @@
 import React from "react";
-import IngredientSearch from "../components/IngredientSearch.component";
-import ChoosenIngredientsList from "../components/search-meal-by-ingredients/ChoosenIngredientsList.component";
-import IngrListItemAdd from "../components/search-meal-by-ingredients/IngrListItemAdd.component"
+import IngredientSearch from "../ingredient/IngredientSearch.component"
+import ChoosenIngredientsList from "../ingredient/ChoosenIngredientsList.component";
+import IngrListItemAdd from "../ingredient/IngrListItemAdd.component"
 
 export default class MealByIngredientSearchPage extends React.Component {
 

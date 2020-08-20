@@ -6,7 +6,7 @@ import LoginForm from "../login/LoginForm.component";
 export default function TopNavbar() {
     return (
         <>
-            <nav className="navbar navbar-expand-md navbar-light bg-light fixed-top">
+            <nav className="navbar navbar-expand-md fixed-top">
                 <NavCollapse id="nav-collapse">
                     <NavItemSection type="left">
                         <NavItem href="/" text="Ingredients" />

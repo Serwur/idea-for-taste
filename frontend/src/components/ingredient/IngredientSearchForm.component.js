@@ -1,4 +1,4 @@
-import React from "./node_modules/react";
+import React from "react";
 
 export default function IngredientSearchForm({ submitQuery, changeTerm, inputRef }) {
 

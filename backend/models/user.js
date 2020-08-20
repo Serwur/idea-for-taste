@@ -6,7 +6,8 @@ module.exports = db.sequelize.define(
     id: {
       type: Sequelize.INTEGER(16).UNSIGNED,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     login: {
       type: Sequelize.STRING(32),
@@ -33,7 +34,7 @@ module.exports = db.sequelize.define(
     sys_create_date: {
       type: Sequelize.DATE,
       allowNull: true,
-      defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
     },
     last_login_date: {
       type: Sequelize.DATE,
@@ -45,5 +46,6 @@ module.exports = db.sequelize.define(
       defaultValue: '0'
     }
   }, {
-    tableName: 'user'
+    tableName: 'user',
+    timestamps: false
   });

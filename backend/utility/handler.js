@@ -1,12 +1,12 @@
 exports.handleStatus500 = (res, message) => {
     res.status(500).send({
-        message: message
+        message
     });
 };
 
 exports.handleStatus400 = (res, message) => {
     res.status(400).send({
-        message: message
+        message
     })
 };
 
