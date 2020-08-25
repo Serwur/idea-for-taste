@@ -3,7 +3,8 @@ const { handleStatus500, handleStatus400IdNull, handleStatus400 } = require("../
 const Controllers = require("./controllers.common");
 const { Op } = require("sequelize");
 const userValidator = require("../utility/validation/user.validation");
-const { createErrorMessage } = require("../utility/errors/errors.handler");
+const { createSqlError: createSqlError, createFriendlyServerError } = require("../utility/errors/errors.handler");
+const bcrypt = require("bcrypt");
 
 exports.login = (req, res) => {
     const { login, password } = req.body;
@@ -18,19 +19,26 @@ exports.register = (req, res) => {
         res.status(400).json(errors);
     } else {
         const { login, password, email } = req.body;
+        bcrypt.hash(password, 10, (err, hashedPass) => {
+            if (err) {
+                console.log(`Error: ${err}`);
+                res.status(500).json({ general: createFriendlyServerError(err) });
+            } else {
+                const user = {
+                    login,
+                    password: hashedPass,
+                    email,
+                    user_type_id: 3
+                };
 
-        const user = {
-            login,
-            password,
-            email,
-            user_type_id: 3
-        };
-
-        User.create(user)
-            .then(Controllers.defHandleData(req, res))
-            .catch(err => {
-                const { type, path } = err.errors[0];
-                res.status(500).json({ general: createErrorMessage(type, path) });
-            });
+                User.create(user)
+                    .then(Controllers.defHandleData(req, res))
+                    .catch(err => {
+                        const { type, path } = err.errors[0];
+                        console.log(`Internal error. Type: ${type}. Path: ${path}`);
+                        res.status(400).json({ general: createSqlError(type, path) });
+                    });
+            }
+        });
     }
 }

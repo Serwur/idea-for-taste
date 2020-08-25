@@ -167,4 +167,9 @@ html {
 .has-error>input, .has-error>input:focus {
     border-color: red;
     border-width: 1px;
+    background: rgba(255, 0, 0, 0.05);
+}
+
+.has-error>label {
+    color: red;
 }

@@ -75,6 +75,7 @@ class RegisterForm extends React.Component {
                     value={login}
                     error={errors.login}
                     onChange={this.onChange}
+                    disabled={isLoading}
                 />
                 <TextFieldGroup
                     field="password"
@@ -83,6 +84,7 @@ class RegisterForm extends React.Component {
                     error={errors.password}
                     onChange={this.onChange}
                     type="password"
+                    disabled={isLoading}
                 />
                 <TextFieldGroup
                     field="passwordConfirm"
@@ -91,6 +93,7 @@ class RegisterForm extends React.Component {
                     error={errors.passwordConfirm}
                     onChange={this.onChange}
                     type="password"
+                    disabled={isLoading}
                 />
                 <TextFieldGroup
                     field="email"
@@ -99,6 +102,7 @@ class RegisterForm extends React.Component {
                     error={errors.email}
                     onChange={this.onChange}
                     type="text"
+                    disabled={isLoading}
                 />
                 <div className="form-group">
                     <button type="submit"
