@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function IngredientSearchForm({ submitQuery, changeTerm, inputRef }) {
-
     return (
         <div className="container mt-5 mb-5">
             <form onSubmit={submitQuery}>
@@ -22,5 +21,4 @@ export default function IngredientSearchForm({ submitQuery, changeTerm, inputRef
             </form>
         </div>
     );
-
 }

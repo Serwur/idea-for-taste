@@ -4,8 +4,8 @@ import * as IngrUtils from "../../utility/ingredients-funs";
 import { LoopCircleLoading as Loading } from "react-loadingg";
 
 import {renderLoading} from "../common/common"
-import IngredientSearchForm from "./IngredientSearchForm.component";
-import IngredientList from "./IngredientList.component";
+import IngredientSearchForm from "./IngredientSearchForm";
+import IngredientList from "./IngredientList";
 import { DATABASE_URL } from "../../utility/constants";
 
 const SEARCH_STATE = {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
-import { DATABASE_URL } from "../../utility/constants";
+import { DATABASE_URL } from "../../../utility/constants";
 import { useRouteMatch } from "react-router-dom";
-import MealItem from "./MealItem.component";
+import MealItem from "../common/MealItem";
 
 export default function FoundMealsPage() {
     const parsedParams = useRouteMatch("/found-meals/:ingrIds");

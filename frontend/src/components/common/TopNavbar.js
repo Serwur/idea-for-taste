@@ -1,7 +1,6 @@
 import React from "react";
 
-import { NavCollapse, NavItemSection, NavItem, Dropdown, DropdownItem } from "../../utility/navbar-factory";
-import LoginForm from "../login/LoginForm.component";
+import { NavCollapse, NavItemSection, NavItem } from "../../utility/navbar-factory";
 
 export default function TopNavbar() {
     return (

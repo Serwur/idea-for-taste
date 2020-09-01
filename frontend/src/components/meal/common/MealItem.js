@@ -1,7 +1,8 @@
 import React from "react";
-import missingImage from "../../img/missing_image.png"
+import missingImage from "../../../img/missing_image.png";
+import PropTypes from "prop-types";
 
-export default function MealItem({ meal, requiredIngredientsIds, ownedIngredientsIds }) {
+function MealItem({ meal, requiredIngredientsIds, ownedIngredientsIds }) {
     if (!meal) throw new Error("meal cannot be null");
     if (!ownedIngredientsIds) throw new Error("ownedIngredientsIds cannot be null");
     if (!requiredIngredientsIds) throw new Error("requiredComponents cannot be null");
@@ -11,13 +12,13 @@ export default function MealItem({ meal, requiredIngredientsIds, ownedIngredient
 
     return (
         <div className="card m-2">
-            <div className="card-header"><a>{meal.name}</a></div>
-            <img src={missingImage} className="card-img" />
+            <div className="card-header"><a href="/">{meal.name}</a></div>
+            <img src={missingImage} alt={meal.name} className="card-img" />
             <div className="card-body">
                 <div className="row">
                     <div className="col-8">
-                        Sample text
-                </div>
+                        Sample text for {meal.id}
+                    </div>
                     <div className="col-4">
                         <p className="owned-ingr">Owned: {ownedComponentsAmount}</p>
                         <p className="miss-ingr">Missing: {missingComponentsAmount}</p>
@@ -37,3 +38,11 @@ function countOwnedComponents(requiredIngredientsIds, ownedIngredientsIds) {
 
     return count;
 }
+
+MealItem.propTypes = {
+    meal: PropTypes.object.isRequired,
+    requiredIngredientsIds: PropTypes.array.isRequired,
+    ownedIngredientsIds: PropTypes.array.isRequired
+}
+
+export default MealItem;

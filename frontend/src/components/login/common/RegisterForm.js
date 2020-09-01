@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import TextFieldGroup from "../common/TextFieldGroup.component";
-import { registerRequest } from "../../services/user.service";
+import history from "../../../history";
+import TextFieldGroup from "../../common/TextFieldGroup";
 
 class RegisterForm extends React.Component {
     constructor(props) {
@@ -40,17 +40,16 @@ class RegisterForm extends React.Component {
             errors: {}
         });
 
-        this.props.register(this.state).then(
+        this.props.registerRequest(this.state).then(
             () => {
-                this.setState({
-                    isLoading: false,
-                    wasRequestSent: true,
-                    isSuccess: true,
-                    errors: {}
+                this.props.addFlashMessage({
+                    type: "success",
+                    text: "You have registered successfully"
                 });
+
+                history.push("/");
             },
             (err) => {
-                console.log(JSON.stringify(err.response, null, 3))
                 const { status, data } = err.response;
                 if (status === 500) {
                     setToErrorState(this, { general: data.general });
@@ -67,7 +66,7 @@ class RegisterForm extends React.Component {
         const { login, password, passwordConfirm, email, errors, isLoading, isSuccess, wasRequestSent } = this.state;
 
         return (
-            <form className="container m-2" onSubmit={this.onSubmit}>
+            <form onSubmit={this.onSubmit}>
                 <h1>Register</h1>
                 <TextFieldGroup
                     field="login"
@@ -120,10 +119,11 @@ class RegisterForm extends React.Component {
 }
 
 RegisterForm.propTypes = {
-    register: PropTypes.func.isRequired
+    registerRequest: PropTypes.func.isRequired,
+    addFlashMessage: PropTypes.func.isRequired
 };
 
-export default connect(null, { register: registerRequest })(RegisterForm);
+export default connect(null)(RegisterForm);
 
 function setToErrorState(component, errors) {
     component.setState({

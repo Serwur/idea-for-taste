@@ -2,9 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import validateInput from "../../utility/validateInput";
-import TextFieldGroup from "../common/TextFieldGroup.component";
-import { loginRequest } from "../../services/user.service";
+import validateInput from "../../../utility/validateInput";
+import TextFieldGroup from "../../common/TextFieldGroup";
+import { loginRequest } from "../../../services/user.service";
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -92,9 +92,5 @@ class LoginForm extends React.Component {
 LoginForm.propTypes = {
     login: PropTypes.func.isRequired
 };
-
-LoginForm.contextTypes = {
-    router: PropTypes.object.isRequired
-}
 
 export default connect(null, { login: loginRequest })(LoginForm);

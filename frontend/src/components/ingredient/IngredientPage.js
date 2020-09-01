@@ -24,5 +24,8 @@ export default function IngredientPage() {
             });
     }, []);
 
-    return <IngredientItem isLoading={appState.loading} ingredient={appState.ingredient} error={appState.error} errorMessage={appState.errorMessage} />;
+    return <IngredientItem isLoading={appState.loading}
+        ingredient={appState.ingredient}
+        error={appState.error}
+        errorMessage={appState.errorMessage} />;
 }

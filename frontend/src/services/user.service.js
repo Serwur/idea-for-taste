@@ -1,5 +1,4 @@
 import axios from "axios";
-import redux from "redux";
 
 import { DATABASE_URL } from "../utility/constants";
 
