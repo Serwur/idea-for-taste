@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import history from "../../../history";
 import TextFieldGroup from "../../common/TextFieldGroup";
+import { validateUserRegister } from "../../../validation/user/register";
 
 class RegisterForm extends React.Component {
     constructor(props) {
@@ -33,33 +34,43 @@ class RegisterForm extends React.Component {
     onSubmit(event) {
         event.preventDefault();
 
-        this.setState({
-            isLoading: true,
-            wasRequestSent: false,
-            isSuccess: false,
-            errors: {}
-        });
+        const validatation = validateUserRegister(this.state);
+        if (validatation.isValid) {
+            this.setState({
+                isLoading: true,
+                wasRequestSent: false,
+                isSuccess: false,
+                errors: {}
+            });
 
-        this.props.registerRequest(this.state).then(
-            () => {
-                this.props.addFlashMessage({
-                    type: "success",
-                    text: "You have registered successfully"
-                });
-
-                history.push("/");
-            },
-            (err) => {
-                const { status, data } = err.response;
-                if (status === 500) {
-                    setToErrorState(this, { general: data.general });
-                } else if (status === 404) {
-                    setToErrorState(this, { general: data.general });
-                } else {
-                    setToErrorState(this, data);
+            this.props.registerRequest(this.state).then(
+                () => {
+                    this.props.addFlashMessage({
+                        type: "success",
+                        text: "You have registered successfully"
+                    });
+                    this.setState({
+                        isLoading: false,
+                        wasRequestSent: true,
+                        isSuccess: true
+                    });
+                },
+                (err) => {
+                    const { status, data } = err.response;
+                    if (status === 500) {
+                        setToErrorState(this, { general: data.general });
+                    } else if (status === 404) {
+                        setToErrorState(this, { general: data.general });
+                    } else {
+                        setToErrorState(this, data);
+                    }
                 }
-            }
-        );
+            );
+        } else {
+            this.setState({
+                errors: validatation.errors
+            });
+        }
     }
 
     render() {

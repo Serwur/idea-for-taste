@@ -33,8 +33,6 @@ export default function FoundMealsPage() {
     if (fetchedData.error) return <h1>{fetchedData.error}</h1>;
     if (fetchedData.results.size === 0) return <h2>Nothing found</h2>;
 
-    console.log("Rendering...");
-
     return (
         <div className="container-fluid align-content-center">
             {renderMeals([...fetchedData.results].map(entry => entry[1]), ownedIngrIds, itemsPerRow)}

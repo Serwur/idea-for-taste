@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, Switch, useHistory } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import { Provider } from "react-redux";
 
 import "jquery";
@@ -12,11 +12,12 @@ import MealByIngredientSearchPage from './components/meal/page/MealByIngredientS
 import StandardIngredietListItem from './components/ingredient/IngredientListItem';
 import FoundMealsPage from './components/meal/page/FoundMealsPage';
 import TopNavbar from './components/common/TopNavbar';
-import LoginForm from './components/login/common/LoginForm';
+import SignInForm from './components/login/common/SignInForm';
 import RegisterPage from './components/login/page/RegisterPage';
 import history from './history';
 import NotFound from './components/errors/NotFound';
 import store from "./store";
+import { NAV_URLS } from './utility/constants';
 
 export default function App() {
     return (
@@ -25,13 +26,13 @@ export default function App() {
                 <TopNavbar />
                 <div className="container-fluid">
                     <Switch>
-                        <Route exact path="/" component={() => <IngredientSearch listItemProps={{
+                        <Route exact path={NAV_URLS.HOME} component={() => <IngredientSearch listItemProps={{
                             ItemComponent: StandardIngredietListItem
                         }} />} />
-                        <Route path="/meal-by-ingredients-search" component={MealByIngredientSearchPage} />
-                        <Route path="/found-meals/:ingrIds" component={FoundMealsPage} />
-                        <Route exact path="/register" component={RegisterPage} />
-                        <Route exact path="/login" component={LoginForm} />
+                        <Route path={NAV_URLS.MEAL_BY_INGREDIENT_SEARCH} component={MealByIngredientSearchPage} />
+                        <Route path={NAV_URLS.FOUND_MEALS} component={FoundMealsPage} />
+                        <Route exact path={NAV_URLS.REGISTER} component={RegisterPage} />
+                        <Route exact path={NAV_URLS.SIGN_IN} component={SignInForm} />
                         <Route component={NotFound} />
                     </Switch>
                 </div>

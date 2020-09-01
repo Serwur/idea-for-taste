@@ -1,95 +1,96 @@
 const Ingredient = require("../models/ingredient");
-const { handleStatus500, handleStatus400IdNull } = require("../utility/handler");
 const { like } = require("sequelize").Op;
 const Controllers = require("./controllers.common");
+const { handleStatus, handleStatusObject, handleStatusJson } = require("../utility/handler/status-handler");
+const { STATUS_CODES } = require("../utility/errors/errors.status.constants");
+
+exports.findSingle = Controllers.findByPk(Ingredient);
 
 exports.create = (req, res) => {
     const { name } = req.body;
-    if (!name) {
-        handleStatus400IdNull(res);
-        return;
+    if (name) {
+        const ingredient = {
+            name: name
+        };
+
+        Ingredient.create(ingredient)
+            .then(Controllers.defHandleData(req, res))
+            .catch(Controllers.defHandleErr(req, res));
+    } else {
+        handleStatus(res, STATUS_CODES.SERVER_ERROR.INTERNAL);
     }
-
-    const ingredient = {
-        name: name
-    };
-
-    Ingredient.create(ingredient)
-        .then(Controllers.defHandleData(req, res))
-        .catch(Controllers.defHandleErr(req, res));
 };
-
-exports.findSingle = Controllers.findByPk(Ingredient);
 
 exports.findAllByName = (req, res) => {
     const name = req.query.name;
 
-    if (!name) {
-        res.status(400).send({
+    if (name) {
+        Ingredient.findAll({
+            where: {
+                name: {
+                    [like]: `%${name}%`
+                }
+            }
+        }).then(ingredients => {
+            if (ingredients) {
+                handleStatusJson(res, STATUS_CODES.SUCCESS.OK, ingredients);
+            } else {
+                handleStatus(res, STATUS_CODES.CLIENT_ERROR.NOT_FOUND);
+            }
+        }).catch(err => {
+            handleStatus(res, STATUS_CODES.SERVER_ERROR.INTERNAL, err);
+        });
+    } else {
+        handleStatusObject(res, STATUS_CODES.CLIENT_ERROR.BAD_REQUEST, {
             message: "Name cannot be empty"
         });
-        return;
     }
-
-    Ingredient.findAll({
-        where: {
-            name: {
-                [like]: `%${name}%`
-            }
-        }
-    }).then(ingredient => {
-        if (ingredient) {
-            res.json(ingredient);
-        } else {
-            res.sendStatus(404);
-        }
-    }).catch(err => {
-        handleStatus500(res, `${err}`);
-    });
 };
 
 exports.updateById = (req, res) => {
     const id = req.params.id;
 
-    if (!id) {
-        handleStatus400IdNull(res);
-        return;
+    if (id) {
+        Ingredient.update(req.body, {
+            where: {
+                id: id
+            }
+        }).then(count => {
+            if (Number(count) === 1) {
+                handleStatusObject(res, STATUS_CODES.SUCCESS.OK, {
+                    message: `Successfully updated ingredient with id: ${id}`
+                });
+            } else {
+                handleStatusObject(res, STATUS_CODES.CLIENT_ERROR.NOT_FOUND, {
+                    message: `Cannot update ingredient with id: ${id}. Propably ingredient with such id does not exists. Size: ${count}`
+                });
+            }
+        }).catch(err => {
+            handleStatus(res, STATUS_CODES.SERVER_ERROR.INTERNAL, err);
+        })
+    } else {
+        handleStatus(res, STATUS_CODES.CLIENT_ERROR.BAD_REQUEST);
     }
-
-    Ingredient.update(req.body, {
-        where: {
-            id: id
-        }
-    }).then(num => {
-        if (Number(num) === 1) {
-            res.send({
-                message: `Successfully updated ingredient with id: ${id}. Size: ${num}`
-            })
-        } else {
-            res.send({
-                message: `Cannot update ingredient with id: ${id}. Propably ingredient with such id does not exists. Size: ${num}`
-            });
-        }
-    }).catch(err => {
-        handleStatus500(res, `Error while updating ingredient with id: ${id}`);
-    })
 }
 
 exports.delete = (req, res) => {
     const id = req.params.id;
 
-    if (!id) {
-        handleStatus400IdNull(res);
-        return;
+    if (id) {
+        Ingredient.destroy({
+            where: {
+                id: id
+            }
+        }).then(count => {
+            if (Number(count) > 0) {
+                handleStatus(res, STATUS_CODES.SUCCESS.OK);
+            } else {
+                handleStatus(res, STATUS_CODES.CLIENT_ERROR.NOT_FOUND);
+            }
+        }).catch(err => {
+            handleStatus(res, res, STATUS_CODES.SERVER_ERROR.INTERNAL, err);
+        });
+    } else {
+        handleStatus(res, STATUS_CODES.CLIENT_ERROR.BAD_REQUEST);
     }
-
-    Ingredient.destroy({
-        where: {
-            id: id
-        }
-    }).then(nums => {
-        res.send(`Deleted ${nums} ingredients from db`);
-    }).catch(err => {
-        handleStatus500(res, err);
-    });
 }

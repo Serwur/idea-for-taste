@@ -5,7 +5,7 @@ const controller = require("../controllers/user.controller");
 
 users.use(cors());
 
-users.post("/login", controller.login);
+users.post("/sign-in", controller.signIn);
 users.post("/register", controller.register);
 
 module.exports = users;

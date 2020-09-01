@@ -41,8 +41,8 @@ function countOwnedComponents(requiredIngredientsIds, ownedIngredientsIds) {
 
 MealItem.propTypes = {
     meal: PropTypes.object.isRequired,
-    requiredIngredientsIds: PropTypes.array.isRequired,
-    ownedIngredientsIds: PropTypes.array.isRequired
+    requiredIngredientsIds: PropTypes.object.isRequired,
+    ownedIngredientsIds: PropTypes.object.isRequired
 }
 
 export default MealItem;

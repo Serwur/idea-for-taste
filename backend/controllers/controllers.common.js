@@ -1,39 +1,44 @@
-const { handleStatus500, handleStatus400IdNull } = require("../utility/handler");
+const { STATUS_CODES } = require("../utility/errors/errors.status.constants");
+const { handleStatus, handleStatusJson } = require("../utility/handler/status-handler");
 
-exports.findByPk = (model) => {
+exports.findByPk = (model, errMessages) => {
     return (req, res) => {
+        const errMess = errMessages ? errMessages : {
+            s400: "Bad request",
+            s404: "Not found",
+            s500: "Internal server error. Passed ID cannot be null."
+        };
         const id = req.query.id;
 
-        if (!id) {
-            handleStatus400IdNull(res);
-            return;
+        if (id) {
+            model.findByPk(id)
+                .then(data => {
+                    if (data) {
+                        res.status(200).json(data);
+                    } else {
+                        handleStatus(res, STATUS_CODES.CLIENT_ERROR.NOT_FOUND);
+                    }
+                }).catch(() => {
+                    handleStatus(res, STATUS_CODES.SERVER_ERROR.INTERNAL);
+                });
+        } else {
+            handleStatus(res, STATUS_CODES.SERVER_ERROR.INTERNAL);
         }
-
-        model.findByPk(id)
-            .then(data => {
-                if (data) {
-                    res.json(data);
-                } else {
-                    res.sendStatus(404);
-                }
-            }).catch(err => {
-                handleStatus500(res, `Error while retrieving object with id ${id}. ${err}`)
-            });
     }
 }
 
 exports.defHandleData = (req, res) => {
     return (data) => {
         if (data) {
-            res.status(200).json(data);
+            handleStatusJson(res, STATUS_CODES.SUCCESS.CREATED, data);
         } else {
-            res.sendStatus(404);
+            handleStatus(res, STATUS_CODES.CLIENT_ERROR.NOT_FOUND);
         }
     }
 }
 
 exports.defHandleErr = (req, res) => {
     return (err) => {
-        handleStatus500(res, err);
+        handleStatus(res, STATUS_CODES.SERVER_ERROR.INTERNAL, err);
     }
 }
