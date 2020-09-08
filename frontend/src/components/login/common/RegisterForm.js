@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import history from "../../../history";
 import TextFieldGroup from "../../common/TextFieldGroup";
 import { validateUserRegister } from "../../../validation/user/register";
 

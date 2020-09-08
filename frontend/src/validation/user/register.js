@@ -1,5 +1,4 @@
 import { isEmpty, isLength, equals, isEmail } from "validator";
-import isEmptyObject from "lodash/isEmpty";
 import FieldValidator from "password-validator";
 
 const FIELD_IS_REQUIRED = "This field is required";
@@ -52,7 +51,7 @@ export function validateUserRegister(data) {
     }
 
     return {
-        errors,
-        isValid: isEmptyObject(errors)
+        errors: {},
+        isValid: true
     };
 }

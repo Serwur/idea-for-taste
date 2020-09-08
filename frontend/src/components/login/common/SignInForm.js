@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import validateSignIn from "../../../validation/user/sign-in";
 import TextFieldGroup from "../../common/TextFieldGroup";
 import { signInRequest } from "../../../services/user.service";
+import history from "../../../history";
 
 class SignInForm extends React.Component {
     constructor(props) {
@@ -39,14 +40,10 @@ class SignInForm extends React.Component {
             this.setState({ validationError: {}, isLoading: true });
             this.props.signInRequest(this.state).then(
                 res => {
-                    this.setState({
-                        isLoading: false,
-                        validationError: {}
-                    });
-                    
+                    history.push("/");
                 },
                 err => {
-                    const {status, data} = err.response;
+                    const {data} = err.response;
                     this.setState({
                         validationError: {
                             general: data.error
@@ -105,4 +102,4 @@ SignInForm.propTypes = {
     signInRequest: PropTypes.func.isRequired
 };
 
-export default connect(null, { signInRequest: signInRequest })(SignInForm);
+export default connect(null, { signInRequest })(SignInForm);

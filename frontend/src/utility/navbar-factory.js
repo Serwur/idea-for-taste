@@ -1,22 +1,43 @@
 import React from "react";
 
-export const createNavItem = (href, text, className, linkClassName, key = "") => {
+export const createNavItem = (props) => {
+    const { href, text, className, linkClassName, key = "", onClick } = props;
     return (
         <li key={href} className={`nav-item ${className}`}>
-            {createNavLink(href, text, `nav-link ${linkClassName}`, key)}
+            {createNavLink(
+                {
+                    href,
+                    text,
+                    className: `nav-link ${linkClassName}`,
+                    key,
+                    onClick
+                }
+            )}
         </li>
     );
 }
 
-export const createDropdownItem = (href, text, className, key = "") => {
+export const createDropdownItem = (props) => {
+    const { href, text, className, key = "" } = props;
     return (
-        createNavLink(href, text, `dropdown-item ${className}`, key)
+        createNavLink({
+            href,
+            text,
+            className: `dropdown-item ${className}`,
+            key
+        })
     );
 }
 
-export const createNavLink = (href, text, className = "nav-link", key = "") => {
+export const createNavLink = (props) => {
+    const { href, text, className = "nav-link", key = "", onClick } = props;
     return (
-        <a key={key} className={className} href={`${href}`}>{text}</a>
+        <a key={key}
+            className={className}
+            href={`${href}`}
+            onClick={onClick}>
+            {text}
+        </a>
     );
 }
 
@@ -61,10 +82,18 @@ export class DropdownDivider extends React.Component {
 
 export class NavItem extends React.Component {
     render() {
-        const { href, text, className, linkClassName } = this.props;
+        const { href, text, className, linkClassName, onClick } = this.props;
 
         return (
-            createNavItem(href ? href : "/", text, className ? className : "", linkClassName ? linkClassName : "")
+            createNavItem(
+                {
+                    href: href ? href : "/",
+                    text,
+                    className: className ? className : "",
+                    linkClassName: linkClassName ? linkClassName : "",
+                    onClick
+                }
+            )
         );
     }
 }

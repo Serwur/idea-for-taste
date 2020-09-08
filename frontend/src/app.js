@@ -1,6 +1,7 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import { Provider } from "react-redux";
+import jwt from "jsonwebtoken";
 
 import "jquery";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -18,6 +19,15 @@ import history from './history';
 import NotFound from './components/errors/NotFound';
 import store from "./store";
 import { NAV_URLS } from './utility/constants';
+import setAuthorizationToken from './utility/setAuthorizationToken';
+import { setCurrentUser } from './services/user.service';
+
+const jwtToken = localStorage.getItem("jwtToken");
+
+if (jwtToken) {
+    setAuthorizationToken(jwtToken);
+    store.dispatch(setCurrentUser(jwt.decode(jwtToken)));
+}
 
 export default function App() {
     return (

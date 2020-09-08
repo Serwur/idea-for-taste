@@ -27,7 +27,7 @@ export default function FoundMealsPage() {
                 });
 
         }
-    }, [fetchedData]);
+    }, [fetchedData, ingrIds]);
 
     if (fetchedData.isLoading) return <h3>Loading...</h3>;
     if (fetchedData.error) return <h1>{fetchedData.error}</h1>;
