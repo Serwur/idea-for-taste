@@ -23,7 +23,11 @@ class TopNavbar extends React.Component {
             </>
         );
 
-        const userGreetings = (
+        const leftAuthenticatedNav = (
+            <NavItem href={NAV_URLS.CREATE_INGREDIENT} text="Create ingredient" />
+        );
+
+        const rightAuthenticatedNav = (
             <span className="navbar-brand">
                 Hello, {this.props.username}!
             </span>
@@ -36,9 +40,10 @@ class TopNavbar extends React.Component {
                         <NavItemSection type="left">
                             <NavItem href={NAV_URLS.HOME} text="Ingredients" />
                             <NavItem href={NAV_URLS.MEAL_BY_INGREDIENT_SEARCH} text="Meals" />
+                            {isAuthenticated && leftAuthenticatedNav}
                         </NavItemSection>
                         <NavItemSection type="right">
-                            {isAuthenticated && userGreetings}
+                            {isAuthenticated && rightAuthenticatedNav}
                             {isAuthenticated ? userLinks : guestLinks}
                         </NavItemSection>
                     </NavCollapse>
@@ -51,7 +56,8 @@ class TopNavbar extends React.Component {
 
 TopNavbar.propTypes = {
     auth: PropTypes.object.isRequired,
-    username: PropTypes.string
+    username: PropTypes.string,
+    logout: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {

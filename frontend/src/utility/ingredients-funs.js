@@ -1,6 +1,6 @@
 import longestCommonSubstring from "./longest-common-substr";
 
-export function getSortedIngredientsBySearchScore(ingredients, searchNameParam) {
+export function sortIngredientsByScore(ingredients, searchNameParam) {
     const scores = new Map();
     const mappedIngredients = new Map();
 
@@ -82,4 +82,20 @@ export function getLongestPrefixLength(str, prefix) {
         len++;
     }
     return len;
+}
+
+export function createEmptyIngredientObject() {
+    return {
+        id: null,
+        name: "",
+        carbohydrate: "0",
+        fat: "0",
+        organic_acid: "0",
+        protein: "0",
+        roughage: "0",
+        salt: "0",
+        sugar: "0",
+        alcohol: "0",
+        water: "0"
+    };
 }

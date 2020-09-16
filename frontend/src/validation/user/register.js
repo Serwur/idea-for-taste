@@ -1,5 +1,6 @@
 import { isEmpty, isLength, equals, isEmail } from "validator";
 import FieldValidator from "password-validator";
+import { isEmptyObject } from "jquery";
 
 const FIELD_IS_REQUIRED = "This field is required";
 const EMAIL_IS_INVALID = "Email is invalid";
@@ -15,9 +16,9 @@ loginSchemaCharacters.has().not().spaces()
 const passwordSchema = new FieldValidator();
 passwordSchema.is().min(8)
     .is().max(32)
-    .has().uppercase()
-    .has().lowercase()
-    .has().digits(1)
+    // .has().uppercase()
+    // .has().lowercase()
+    // .has().digits(1)
     .has().not().spaces();
 
 export function validateUserRegister(data) {
@@ -51,7 +52,7 @@ export function validateUserRegister(data) {
     }
 
     return {
-        errors: {},
-        isValid: true
+        errors,
+        isValid: isEmptyObject(errors)
     };
 }

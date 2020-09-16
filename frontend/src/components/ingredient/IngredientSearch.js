@@ -1,12 +1,12 @@
 import React from "react";
-import * as IngrUtils from "../../utility/ingredients-funs";
+import { connect } from 'react-redux';
 
 import { LoopCircleLoading as Loading } from "react-loadingg";
-
-import {renderLoading} from "../common/common"
+import * as IngrUtils from "../../utility/ingredients-funs";
+import { renderLoading } from "../common/common"
 import IngredientSearchForm from "./IngredientSearchForm";
 import IngredientList from "./IngredientList";
-import { DATABASE_URL } from "../../utility/constants";
+import { findIngredientsByName } from "../../services/ingredient.service";
 
 const SEARCH_STATE = {
     SUCCESS: 1,
@@ -17,7 +17,7 @@ const SEARCH_STATE = {
     ERROR_FETCH: 6
 };
 
-export default class IngredientSearch extends React.Component {
+class IngredientSearch extends React.Component {
     constructor(props) {
         super(props);
 
@@ -60,7 +60,6 @@ export default class IngredientSearch extends React.Component {
                     fetchErrorMsg: null
                 }
             );
-
             this.fetchIngredients(this.state.ingrName)
         } else {
             this.setState({ isEmptyError: true });
@@ -70,26 +69,28 @@ export default class IngredientSearch extends React.Component {
     }
 
     fetchIngredients(searchInput) {
-        const searchUrl = `${DATABASE_URL}/ingredient/name?name=${encodeURI(parseSearchInput(searchInput))}`;
-        fetch(searchUrl)
-            .then(response => response.json())
-            .then(data => {
-                const sortedIngredients = IngrUtils.getSortedIngredientsBySearchScore(data, this.state.prevEntry);
+        this.props.findIngredientsByName(searchInput).then(
+            res => {
+                const foundIngredients = res.data;
+                const sortedIngredients = IngrUtils.sortIngredientsByScore(foundIngredients, this.state.prevEntry);
                 this.setState(
                     {
                         loading: false,
                         loaded: true,
                         results: sortedIngredients
                     });
-            }).catch(err => {
+            }
+        ).catch(
+            err => {
                 this.setState(
                     {
                         isFetchError: true,
                         loading: false,
                         fetchErrorMsg: "Ups... some problem with connection has occured, don't panic =)"
                     }
-                );
-            });
+                )
+            }
+        );
     }
 
     render() {
@@ -150,6 +151,4 @@ function renderResults(inputIngrName, results, listItemProps) {
     );
 }
 
-function parseSearchInput(input) {
-    return [...(input.replace(/\s/g, ""))].join("%")
-}
+export default connect(null, { findIngredientsByName })(IngredientSearch);

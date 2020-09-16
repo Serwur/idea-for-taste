@@ -66,6 +66,13 @@ module.exports = db.sequelize.define(
     sys_update_date: {
       type: Sequelize.DATE,
       allowNull: true
+    },
+    creator_id: {
+      type: Sequelize.INTEGER(16).UNSIGNED,
+      references: {
+        model: 'user',
+        key: 'id'
+      }
     }
   }, {
   tableName: 'ingredient',

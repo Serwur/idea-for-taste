@@ -28,8 +28,8 @@ export function signInRequest(data) {
 export function logout() {
     return async dispatch => {
         localStorage.removeItem("jwtToken");
-        setAuthorizationToken(null);
-        dispatch(setCurrentUser(null));
+        setAuthorizationToken(false);
+        dispatch(setCurrentUser({}));
     };
 }
 

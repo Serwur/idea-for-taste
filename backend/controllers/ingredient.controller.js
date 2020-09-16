@@ -9,11 +9,7 @@ exports.findSingle = Controllers.findByPk(Ingredient);
 exports.create = (req, res) => {
     const { name } = req.body;
     if (name) {
-        const ingredient = {
-            name: name
-        };
-
-        Ingredient.create(ingredient)
+        Ingredient.create(req.body)
             .then(Controllers.defHandleData(req, res))
             .catch(Controllers.defHandleErr(req, res));
     } else {
@@ -53,16 +49,16 @@ exports.updateById = (req, res) => {
     if (id) {
         Ingredient.update(req.body, {
             where: {
-                id: id
-            }
-        }).then(count => {
-            if (Number(count) === 1) {
-                handleStatusObject(res, STATUS_CODES.SUCCESS.OK, {
-                    message: `Successfully updated ingredient with id: ${id}`
-                });
+                id
+            },
+            fields: ["name", "protein", "fat", "carbohydrate", "alcohol",
+                "roughage", "sugar", "organic_acid", "water", "salt"]
+        }).then(ingredients => {
+            if (ingredients.length === 1) {
+                handleStatusJson(res, STATUS_CODES.SUCCESS.OK);
             } else {
                 handleStatusObject(res, STATUS_CODES.CLIENT_ERROR.NOT_FOUND, {
-                    message: `Cannot update ingredient with id: ${id}. Propably ingredient with such id does not exists. Size: ${count}`
+                    message: `Cannot update ingredient with id: ${id}. Found objects: ${ingredients.length}`
                 });
             }
         }).catch(err => {

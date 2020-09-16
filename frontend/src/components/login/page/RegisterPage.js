@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import RegisterForm from "../common/RegisterForm";
 import { registerRequest } from "../../../services/user.service";
-import { addFlashMessage } from "../../../actions/flashMessages";
+import { addFlashMessage } from "../../../actions/flashMessagesAction";
 
 class RegisterPage extends React.Component {
     render() {

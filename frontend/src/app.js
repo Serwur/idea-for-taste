@@ -21,6 +21,8 @@ import store from "./store";
 import { NAV_URLS } from './utility/constants';
 import setAuthorizationToken from './utility/setAuthorizationToken';
 import { setCurrentUser } from './services/user.service';
+import IngredientCreationPage from './components/ingredient/IngredientCreationPage';
+import requireAuthenticate from './components/common/requireAuthenticate';
 
 const jwtToken = localStorage.getItem("jwtToken");
 
@@ -34,7 +36,7 @@ export default function App() {
         <Provider store={store}>
             <Router history={history}>
                 <TopNavbar />
-                <div className="container-fluid">
+                <div className="container-fluid pb-4">
                     <Switch>
                         <Route exact path={NAV_URLS.HOME} component={() => <IngredientSearch listItemProps={{
                             ItemComponent: StandardIngredietListItem
@@ -43,6 +45,7 @@ export default function App() {
                         <Route path={NAV_URLS.FOUND_MEALS} component={FoundMealsPage} />
                         <Route exact path={NAV_URLS.REGISTER} component={RegisterPage} />
                         <Route exact path={NAV_URLS.SIGN_IN} component={SignInForm} />
+                        <Route exact path={NAV_URLS.CREATE_INGREDIENT} component={requireAuthenticate(IngredientCreationPage)} />
                         <Route component={NotFound} />
                     </Switch>
                 </div>

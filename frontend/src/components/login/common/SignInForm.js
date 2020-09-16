@@ -43,7 +43,7 @@ class SignInForm extends React.Component {
                     history.push("/");
                 },
                 err => {
-                    const {data} = err.response;
+                    const { data } = err.response;
                     this.setState({
                         validationError: {
                             general: data.error
@@ -63,10 +63,12 @@ class SignInForm extends React.Component {
 
     render() {
         const { login, password, validationError, isLoading } = this.state;
+        const { flashMessages } = this.props;
 
         return (
             <div className="row">
                 <form className="col-4 offset-4" onSubmit={this.onSubmit}>
+                    {flashMessages.length > 0 && <div className="alert alert-danger">{flashMessages[0].text}</div>}
                     <h1>Sign In</h1>
                     <TextFieldGroup
                         field="login"
@@ -89,7 +91,7 @@ class SignInForm extends React.Component {
                             className="btn btn-primary"
                             disabled={isLoading}>
                             Login
-                </button>
+                        </button>
                     </div>
                     {validationError.general && <div className="alert alert-danger">{validationError.general}</div>}
                 </form>
@@ -99,7 +101,14 @@ class SignInForm extends React.Component {
 }
 
 SignInForm.propTypes = {
-    signInRequest: PropTypes.func.isRequired
+    signInRequest: PropTypes.func.isRequired,
+    flashMessages: PropTypes.array
 };
 
-export default connect(null, { signInRequest })(SignInForm);
+function mapStateToProps(state) {
+    return {
+        flashMessages: state.flashMessages
+    }
+}
+
+export default connect(mapStateToProps, { signInRequest })(SignInForm);
