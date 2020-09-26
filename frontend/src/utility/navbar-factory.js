@@ -17,18 +17,6 @@ export const createNavItem = (props) => {
     );
 }
 
-export const createDropdownItem = (props) => {
-    const { href, text, className, key = "" } = props;
-    return (
-        createNavLink({
-            href,
-            text,
-            className: `dropdown-item ${className}`,
-            key
-        })
-    );
-}
-
 export const createNavLink = (props) => {
     const { href, text, className = "nav-link", key = "", onClick } = props;
     return (
@@ -41,9 +29,22 @@ export const createNavLink = (props) => {
     );
 }
 
+export const createDropdownItem = (props) => {
+    const { href, text, className, key = "" } = props;
+    console.log(props);
+    return (
+        createNavLink({
+            href,
+            text,
+            className: `dropdown-item ${className}`,
+            key
+        })
+    );
+}
+
 export class Dropdown extends React.Component {
     render() {
-        const { id, text, children, className } = this.props;
+        const { id, text, children, className = "" } = this.props;
         return (
             <li className={`nav-item dropdown ${className}`}>
                 <a id={id}
@@ -63,13 +64,15 @@ export class Dropdown extends React.Component {
     }
 }
 
-export class DropdownItem extends React.Component {
-    render() {
-        const { href, text, className } = this.props;
-        return (
-            createDropdownItem(href ? href : "/", text, className)
-        );
-    }
+export function DropdownItem(props) {
+    console.log(props);
+    const { href = "#", text, className = "" } = props;
+    return createNavLink({
+        href,
+        text,
+        className: `dropdown-item ${className}`,
+        key: text
+    });
 }
 
 export class DropdownDivider extends React.Component {
