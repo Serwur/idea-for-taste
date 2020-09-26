@@ -2,11 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 
-import { createEmptyIngredientObject } from "../../utility/ingredients-funs";
 import TextFieldGroup from '../common/TextFieldGroup'
 import { setIngredientToEdit } from "../../actions/ingredientEditAction";
 import { createIngredient, updateIngredient } from '../../services/ingredient.service';
 import { isEmptyObject } from 'jquery';
+import classnames from 'classnames';
 
 class IngredientCreateForm extends React.Component {
     constructor(props) {
@@ -95,105 +95,105 @@ class IngredientCreateForm extends React.Component {
         const buttonName = this.state.ingredient.id ? "Save" : "Create";
         const errors = this.state.errors;
         const isLoading = this.state.isLoading;
+        const className = classnames({ [`${this.props.className}`]: this.props.className });
 
         return (
-            <div className="row">
-                <form className="col-6 offset-3 justify-content-center" onSubmit={this.onSubmit}>
-                    <TextFieldGroup
-                        field="name"
-                        label="Ingredient name"
-                        value={name}
-                        onChange={this.onChange}
-                        error={errors.name}
-                    />
-                    <div className="row">
-                        <TextFieldGroup
-                            className="col-6"
-                            field="carbohydrate"
-                            label="Carbohydrate g/100"
-                            value={carbohydrate}
-                            onChange={this.onChange}
-                        />
-                        <TextFieldGroup
-                            className="col-6"
-                            field="fat"
-                            label="Fat g/100"
-                            value={fat}
-                            onChange={this.onChange}
-                        />
-                    </div>
-                    <div className="row">
-                        <TextFieldGroup
-                            className="col-6"
-                            field="organic_acid"
-                            label="Organic acid g/100"
-                            value={organic_acid}
-                            onChange={this.onChange}
-                        />
-                        <TextFieldGroup
-                            className="col-6"
-                            field="protein"
-                            label="Protein g/100"
-                            value={protein}
-                            onChange={this.onChange}
-                        />
-                    </div>
-                    <div className="row">
-                        <TextFieldGroup
-                            className="col-6"
-                            field="roughage"
-                            label="Roughage g/100"
-                            value={roughage}
-                            onChange={this.onChange}
-                        />
-                        <TextFieldGroup
-                            className="col-6"
-                            field="salt"
-                            label="Salt g/100"
-                            value={salt}
-                            onChange={this.onChange}
-                        />
-                    </div>
-                    <div className="row">
-                        <TextFieldGroup
-                            className="col-6"
-                            field="sugar"
-                            label="Sugar g/100"
-                            value={sugar}
-                            onChange={this.onChange}
-                        />
-                        <TextFieldGroup
-                            className="col-6"
-                            field="alcohol"
-                            label="Alcohol g/100"
-                            value={alcohol}
-                            onChange={this.onChange}
-                        />
-                    </div>
-                    <div className="row">
-                        <TextFieldGroup
-                            className="col-6"
-                            field="water"
-                            label="Water g/100"
-                            value={water}
-                            onChange={this.onChange}
-                        />
-                    </div>
-                    <div className="row justify-content-center pt-2">
-                        <button type="submit"
-                            value="save"
-                            disabled={isLoading}
-                            className="btn btn-primary col-9">
-                            {buttonName}
-                        </button>
-                    </div>
-                </form>
-            </div>
+            <form className={className} onSubmit={this.onSubmit}>
+                <TextFieldGroup
+                    field="name"
+                    label="Ingredient name"
+                    value={name}
+                    onChange={this.onChange}
+                    error={errors.name}
+                />
+                {/* <div className="row"> */}
+                <TextFieldGroup
+                    className="col-6"
+                    field="carbohydrate"
+                    label="Carbohydrate g/100"
+                    value={carbohydrate}
+                    onChange={this.onChange}
+                />
+                <TextFieldGroup
+                    className="col-6"
+                    field="fat"
+                    label="Fat g/100"
+                    value={fat}
+                    onChange={this.onChange}
+                />
+                {/* </div>
+                <div className="row"> */}
+                <TextFieldGroup
+                    className="col-6"
+                    field="organic_acid"
+                    label="Organic acid g/100"
+                    value={organic_acid}
+                    onChange={this.onChange}
+                />
+                <TextFieldGroup
+                    className="col-6"
+                    field="protein"
+                    label="Protein g/100"
+                    value={protein}
+                    onChange={this.onChange}
+                />
+                {/* </div>
+                <div className="row"> */}
+                <TextFieldGroup
+                    className="col-6"
+                    field="roughage"
+                    label="Roughage g/100"
+                    value={roughage}
+                    onChange={this.onChange}
+                />
+                <TextFieldGroup
+                    className="col-6"
+                    field="salt"
+                    label="Salt g/100"
+                    value={salt}
+                    onChange={this.onChange}
+                />
+                {/* </div>
+                <div className="row"> */}
+                <TextFieldGroup
+                    className="col-6"
+                    field="sugar"
+                    label="Sugar g/100"
+                    value={sugar}
+                    onChange={this.onChange}
+                />
+                <TextFieldGroup
+                    className="col-6"
+                    field="alcohol"
+                    label="Alcohol g/100"
+                    value={alcohol}
+                    onChange={this.onChange}
+                />
+                {/* </div>
+                <div className="row"> */}
+                <TextFieldGroup
+                    className="col-6"
+                    field="water"
+                    label="Water g/100"
+                    value={water}
+                    onChange={this.onChange}
+                />
+                {/* </div> */}
+                <div className="row justify-content-center pt-2">
+                    <button type="submit"
+                        value="save"
+                        disabled={isLoading}
+                        className="btn btn-primary col-9">
+                        {buttonName}
+                    </button>
+                </div>
+            </form>
         );
     }
 }
 
 IngredientCreateForm.propTypes = {
+    className: PropTypes.string,
     ingredient: PropTypes.object,
     ingredientSaveRequest: PropTypes.func.isRequired,
     userId: PropTypes.number.isRequired

@@ -35,7 +35,7 @@ class TopNavbar extends React.Component {
 
         return (
             <>
-                <nav className="navbar navbar-expand-md fixed-top">
+                <nav className="navbar navbar-expand-md fixed-top navbar-dark">
                     <NavCollapse id="nav-collapse">
                         <NavItemSection type="left">
                             <NavItem href={NAV_URLS.HOME} text="Ingredients" />

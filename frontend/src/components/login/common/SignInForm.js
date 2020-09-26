@@ -66,8 +66,9 @@ class SignInForm extends React.Component {
         const { flashMessages } = this.props;
 
         return (
-            <div className="row">
-                <form className="col-4 offset-4" onSubmit={this.onSubmit}>
+            <div className="row justify-content-center">
+                <form className="d-flex flex-column align-items-center"
+                    onSubmit={this.onSubmit}>
                     {flashMessages.length > 0 && <div className="alert alert-danger">{flashMessages[0].text}</div>}
                     <h1>Sign In</h1>
                     <TextFieldGroup

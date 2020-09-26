@@ -1,4 +1,4 @@
-export const DATABASE_URL = "http://localhost:5000";
+export const DATABASE_URL = "http://192.168.1.5:5000";
 export const DB_INGR_URL = `${DATABASE_URL}/ingredient`;
 
 export const DB_INGR_FIND_BY_NAME_URL = `${DB_INGR_URL}/name`;

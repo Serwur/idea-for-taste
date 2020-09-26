@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
 export default class IngredientList extends React.Component {
     render() {
@@ -25,4 +26,8 @@ export default class IngredientList extends React.Component {
             </div>
         );
     }
+}
+
+IngredientList.propTypes = {
+    listItemProps: PropTypes.object.isRequired
 }

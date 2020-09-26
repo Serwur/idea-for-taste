@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 import "jquery";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
-import "./index.css";
+import "./styles.css";
 
 import IngredientSearch from './components/ingredient/IngredientSearch';
 import MealByIngredientSearchPage from './components/meal/page/MealByIngredientSearchPage';
