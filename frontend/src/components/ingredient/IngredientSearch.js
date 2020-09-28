@@ -97,7 +97,7 @@ class IngredientSearch extends React.Component {
         const searchState = getSearchState({ ...this.state });
 
         return (
-            <div className="ml-2 mr-2">
+            <div className="m-2 pt-1">
                 <IngredientSearchForm
                     submitQuery={this.submitQuery}
                     changeTerm={this.changeSearch}
