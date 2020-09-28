@@ -1,25 +1,35 @@
-import React, { useEffect } from "react"
+import React from "react"
 import PropTypes from "prop-types";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { connect } from "react-redux";
 
 import history from "../../history";
 import { addFlashMessage } from "../../actions/flashMessagesAction";
 
 export default function (ComposedComponent) {
     class Authenticate extends React.Component {
+        constructor(props) {
+            super(props);
+
+            this.pushToSignInPage = this.pushToSignInPage.bind(this);
+        }
+
+        pushToSignInPage() {
+            this.props.addFlashMessage({
+                type: "error",
+                text: "You need to login to access this page"
+            });
+            history.push("/sign-in");
+        }
+
         componentDidMount() {
             if (!this.props.isAuthenticated) {
-                this.props.addFlashMessage({
-                    type: "error",
-                    text: "You need to login to access this page"
-                });
-                history.push("/sign-in");
+                this.pushToSignInPage();
             }
         }
 
         componentDidUpdate(nextProps) {
             if (!nextProps.isAuthenticated) {
-                history.push("/");
+                history.push("/")
             }
         }
 

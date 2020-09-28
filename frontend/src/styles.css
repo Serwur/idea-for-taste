@@ -16,8 +16,8 @@ html {
 }
 
 .loading-block {
-    margin-top: 250px;
-    display: block;
+    margin: auto;
+    display: inline-block;
 }
 
 .top-navbar-offset {

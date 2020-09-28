@@ -13,7 +13,6 @@ import MealByIngredientSearchPage from './components/meal/page/MealByIngredientS
 import StandardIngredietListItem from './components/ingredient/IngredientListItem';
 import FoundMealsPage from './components/meal/page/FoundMealsPage';
 import TopNavbar from './components/common/TopNavbar';
-import SignInForm from './components/login/common/SignInForm';
 import RegisterPage from './components/login/page/RegisterPage';
 import history from './history';
 import NotFound from './components/errors/NotFound';
@@ -23,6 +22,9 @@ import setAuthorizationToken from './utility/setAuthorizationToken';
 import { setCurrentUser } from './services/user.service';
 import IngredientCreationPage from './components/ingredient/IngredientCreationPage';
 import requireAuthenticate from './components/common/requireAuthenticate';
+import notAuthenticatedOnly from "./components/common/notAuthenticatedOnly";
+import SignInModal from './components/login/common/SignInModal';
+import SignInPage from './components/login/page/SignInPage';
 
 const jwtToken = localStorage.getItem("jwtToken");
 
@@ -36,6 +38,7 @@ export default function App() {
         <Provider store={store}>
             <Router history={history}>
                 <TopNavbar />
+                <SignInModal />
                 <div className="container-fluid pb-4">
                     <Switch>
                         <Route exact path={NAV_URLS.HOME} component={() => <IngredientSearch listItemProps={{
@@ -43,8 +46,8 @@ export default function App() {
                         }} />} />
                         <Route path={NAV_URLS.MEAL_BY_INGREDIENT_SEARCH} component={MealByIngredientSearchPage} />
                         <Route path={NAV_URLS.FOUND_MEALS} component={FoundMealsPage} />
-                        <Route exact path={NAV_URLS.REGISTER} component={RegisterPage} />
-                        <Route exact path={NAV_URLS.SIGN_IN} component={SignInForm} />
+                        <Route exact path={NAV_URLS.REGISTER} component={notAuthenticatedOnly(RegisterPage)} />
+                        <Route exact path={NAV_URLS.SIGN_IN} component={notAuthenticatedOnly(SignInPage)} />
                         <Route exact path={NAV_URLS.CREATE_INGREDIENT} component={requireAuthenticate(IngredientCreationPage)} />
                         <Route component={NotFound} />
                     </Switch>

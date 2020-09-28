@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import $ from "jquery";
 
-import { NavCollapse, NavItemSection, NavItem, Dropdown, DropdownItem } from "../../utility/navbar-factory";
+import { NavCollapse, NavItemSection, NavItem, Dropdown, DropdownItem, NavItemButton } from "../../utility/navbar-factory";
 import { NAV_URLS } from "../../utility/constants";
 import { logout } from "../../services/user.service";
 
@@ -54,15 +54,9 @@ class TopNavbar extends React.Component {
 
         const guestLinks = (
             <>
-                <NavItem href={NAV_URLS.SIGN_IN} text="Sign in" />
+                <NavItemButton dataToggle="modal" dataTarget="#signInModal" text="Sign in" />
                 <NavItem href={NAV_URLS.REGISTER} text="Register" />
             </>
-        );
-
-        const rightAuthenticatedNav = (
-            <span className="navbar-brand">
-                Hello, {this.props.username}!
-            </span>
         );
 
         return (
@@ -78,7 +72,6 @@ class TopNavbar extends React.Component {
                             <NavItem href={NAV_URLS.MEAL_BY_INGREDIENT_SEARCH} text="Meals" />
                         </NavItemSection>
                         <NavItemSection type="right">
-                            {isAuthenticated && rightAuthenticatedNav}
                             {isAuthenticated ? userLinks : guestLinks}
                         </NavItemSection>
                     </NavCollapse>

@@ -6,6 +6,10 @@ import validateSignIn from "../../../validation/user/sign-in";
 import TextFieldGroup from "../../common/TextFieldGroup";
 import { signInRequest } from "../../../services/user.service";
 import history from "../../../history";
+import { Link } from "react-router-dom";
+import { hideSignInModal } from "./SignInModal";
+import { LoopCircleLoading as Loading } from "react-loadingg";
+import { renderLoading } from "../../common/common";
 
 class SignInForm extends React.Component {
     constructor(props) {
@@ -38,20 +42,23 @@ class SignInForm extends React.Component {
 
         if (this.isValid()) {
             this.setState({ validationError: {}, isLoading: true });
-            this.props.signInRequest(this.state).then(
-                res => {
-                    history.push("/");
-                },
-                err => {
-                    const { data } = err.response;
-                    this.setState({
-                        validationError: {
-                            general: data.error
-                        },
-                        isLoading: false
-                    })
-                }
-            );
+            setTimeout(() => {
+                this.props.signInRequest(this.state).then(
+                    res => {
+                        hideSignInModal();
+                        history.push("/");
+                    },
+                    err => {
+                        const { data } = err.response;
+                        this.setState({
+                            validationError: {
+                                general: data.error
+                            },
+                            isLoading: false
+                        })
+                    }
+                );
+            }, 500);
         }
     }
 
@@ -66,14 +73,15 @@ class SignInForm extends React.Component {
         const { flashMessages } = this.props;
 
         return (
-            <div className="row justify-content-center">
+            <>
+                {isLoading && renderLoading(Loading)}
                 <form className="d-flex flex-column align-items-center"
                     onSubmit={this.onSubmit}>
+                    {validationError.general && <div className="alert alert-danger">{validationError.general}</div>}
                     {flashMessages.length > 0 && <div className="alert alert-danger">{flashMessages[0].text}</div>}
-                    <h1>Sign In</h1>
                     <TextFieldGroup
                         field="login"
-                        label="Login"
+                        label="Login or E-mail"
                         value={login}
                         error={validationError.login}
                         onChange={this.onChange}
@@ -94,9 +102,10 @@ class SignInForm extends React.Component {
                             Login
                         </button>
                     </div>
-                    {validationError.general && <div className="alert alert-danger">{validationError.general}</div>}
+                    <Link to="/register" onClick={() => hideSignInModal()}>You don't have an account?</Link>
+                    <Link to="/account-recover" onClick={() => hideSignInModal()}>Forgot a password?</Link>
                 </form>
-            </div>
+            </>
         );
     }
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export const createNavItem = (props) => {
     const { href, text, className, linkClassName, key = "", onClick } = props;
@@ -18,7 +19,7 @@ export const createNavItem = (props) => {
 }
 
 export const createNavLink = (props) => {
-    const { href, text, className = "nav-link", key = "", onClick } = props;
+    const { href, text, className = "nav-link", key = "", onClick = null } = props;
     return (
         <a key={key}
             className={className}
@@ -101,9 +102,33 @@ export class NavItem extends React.Component {
     }
 }
 
+export function NavItemButton(props) {
+    const { type = "button", className = "", text, onClick = null, dataToggle, dataTarget } = props;
+    return (
+        <li className="nav-item">
+            <a type={type}
+                className={`nav-link ${className}`}
+                data-toggle={dataToggle}
+                data-target={dataTarget}
+                onClick={onClick}>
+                {text}
+            </a>
+        </li>
+    );
+}
+
+NavItemButton.propTypes = {
+    className: PropTypes.string,
+    type: PropTypes.string,
+    text: PropTypes.string.isRequired,
+    onClick: PropTypes.func,
+    dataToggle: PropTypes.string,
+    dataTarget: PropTypes.string
+}
+
 export class NavItemSection extends React.Component {
     render() {
-        const { type, children, className } = this.props;
+        const { type, children, className = "" } = this.props;
         let align = "mr-auto";
 
         if (String(type).match("right")) {
