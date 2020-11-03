@@ -66,9 +66,8 @@ class TopNavbar extends React.Component {
                         <NavItemSection type="left">
                             <Dropdown text="Ingredients">
                                 <DropdownItem href={NAV_URLS.HOME} text="Find" />
-                                <DropdownItem href={NAV_URLS.CREATE_INGREDIENT} text="Create" />
+                                {isAuthenticated && <DropdownItem href={NAV_URLS.CREATE_INGREDIENT} text="Create" />}
                             </Dropdown>
-                            {/* <NavItem href={NAV_URLS.HOME} text="Ingredients" /> */}
                             <NavItem href={NAV_URLS.MEAL_BY_INGREDIENT_SEARCH} text="Meals" />
                         </NavItemSection>
                         <NavItemSection type="right">

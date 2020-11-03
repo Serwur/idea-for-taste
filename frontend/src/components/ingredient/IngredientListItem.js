@@ -1,28 +1,38 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+import missingImage from "./../../img/missing_image.png";
+import PropTypes from "prop-types";
+import history from "../../history";
+import { NAV_URLS } from "../../utility/constants";
 
 export default function StandardIngredietListItem({ ingredient }) {
-    const { name, alcohol, carbohydrate, fat, organic_acid, protein, roughage, salt, sugar, water } = ingredient;
+    const { id, name, alcohol, carbohydrate, fat, organic_acid, protein, roughage, salt, sugar, water } = ingredient;
+    const searchForMeals = () => {
+        history.push(`${NAV_URLS.FOUND_MEALS}/${id}`)
+    }
+
     return (
-        <div className="container m-4">
-            {createTableRowData("Name", name)}
-            {createTableRowData("Alcohol", alcohol)}
-            {createTableRowData("Carbohydrate", carbohydrate)}
-            {createTableRowData("Fat", fat)}
-            {createTableRowData("Organic acid", organic_acid)}
-            {createTableRowData("Protein", protein)}
-            {createTableRowData("Roughage", roughage)}
-            {createTableRowData("Salt", salt)}
-            {createTableRowData("Sugar", sugar)}
-            {createTableRowData("Water", water)}
+        <div className="container m-2 ingredient-item" width="100px">
+            <div className="row ingr-item" >
+                <div className="col-9 p-2 clickable" onClick={searchForMeals}>
+                    <div className="col-3">
+                        <img src={missingImage} alt={name} className="ingr-img" />
+                    </div>
+                    <div className="col-9">
+                        <h4>{name}</h4>
+                        <p>100 kcal/100g</p>
+                    </div>
+                </div>
+                <div className="col-3 text-right">
+                    <Link to="/">Find meals</Link><br />
+                    <Link to="/">Add to ingredient list</Link>
+                </div>
+            </div>
         </div>
     );
 }
 
-function createTableRowData(valueName, value) {
-    return (
-        <div className="row ingr-item">
-            <div className="col-4">{valueName}</div>
-            <div className="col-8">{value}</div>
-        </div>
-    );
-}
+StandardIngredietListItem.propTypes = {
+    ingredient: PropTypes.object.isRequired
+};

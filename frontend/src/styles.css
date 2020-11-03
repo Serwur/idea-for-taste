@@ -9,12 +9,6 @@ html {
     --main-text-color: #fff4f4;
 }
 
-.row.ingr-item {
-    background-color: var(--main-color);
-    border: solid var(--main-text-color) 1px;
-    color: var(--main-text-color);
-}
-
 .loading-block {
     margin: auto;
     display: inline-block;
@@ -240,3 +234,32 @@ html {
 .has-error>label {
     color: red;
 }
+
+.ingr-img {
+    width: auto;
+    height: 64px;
+}
+
+.ingredient-item .row {
+    background-color: var(--main-color);
+    border: solid var(--main-text-color) 1px;
+    border-radius: 4px;
+    color: var(--main-text-color);
+}
+
+.ingredient-item .clickable {
+    cursor: pointer;
+}
+
+.ingredient-item .clickable:hover {
+    background-color: var(--main-color-lighter);
+}
+
+.ingredient-item a {
+    color: var(--main-text-color);
+}
+/* 
+.row {
+    margin-right: 0%;
+    margin-left: 0%;
+} */

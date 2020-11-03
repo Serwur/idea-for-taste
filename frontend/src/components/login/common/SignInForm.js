@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { hideSignInModal } from "./SignInModal";
 import { LoopCircleLoading as Loading } from "react-loadingg";
 import { renderLoading } from "../../common/common";
+import { NAV_URLS } from "../../../utility/constants";
 
 class SignInForm extends React.Component {
     constructor(props) {
@@ -46,7 +47,7 @@ class SignInForm extends React.Component {
                 this.props.signInRequest(this.state).then(
                     res => {
                         hideSignInModal();
-                        history.push("/");
+                        history.push(NAV_URLS.HOME);
                     },
                     err => {
                         const { data } = err.response;
@@ -102,7 +103,7 @@ class SignInForm extends React.Component {
                             Login
                         </button>
                     </div>
-                    <Link to="/register" onClick={() => hideSignInModal()}>You don't have an account?</Link>
+                    <Link to="/register" onClick={() => hideSignInModal()}>Don't have an account?</Link>
                     <Link to="/account-recover" onClick={() => hideSignInModal()}>Forgot a password?</Link>
                 </form>
             </>

@@ -15,3 +15,16 @@ export default class IngredientCreationPage extends React.Component {
         );
     }
 }
+
+// TODO
+/*
+Create multi page ingredient creation
+page1 - name, type, image, description
+page2 - nutritional values + kcal
+page3 - optional, can skip: measures
+*/
+
+/*
+ those page will be used later for edition with view like tabs
+ +extra page to: delete, make public, private ingredient for searching
+*/

@@ -133,8 +133,6 @@ RegisterForm.propTypes = {
     addFlashMessage: PropTypes.func.isRequired
 };
 
-export default connect(null)(RegisterForm);
-
 function setToErrorState(component, errors) {
     component.setState({
         isLoading: false,
@@ -143,3 +141,5 @@ function setToErrorState(component, errors) {
         errors: errors
     })
 }
+
+export default connect(null)(RegisterForm);

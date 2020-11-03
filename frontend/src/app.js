@@ -23,7 +23,7 @@ import { setCurrentUser } from './services/user.service';
 import IngredientCreationPage from './components/ingredient/IngredientCreationPage';
 import requireAuthenticate from './components/common/requireAuthenticate';
 import notAuthenticatedOnly from "./components/common/notAuthenticatedOnly";
-import SignInModal from './components/login/common/SignInModal';
+import SignInModal, { hideSignInModal } from './components/login/common/SignInModal';
 import SignInPage from './components/login/page/SignInPage';
 
 const jwtToken = localStorage.getItem("jwtToken");

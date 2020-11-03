@@ -85,17 +85,25 @@ export function getLongestPrefixLength(str, prefix) {
 }
 
 export function createEmptyIngredientObject() {
+    return createIngredient(null, {});
+}
+
+export function createIngredient(id, {name, carbohydrate, fat, organic_acid, protein, roughage, salt, sugar, alcohol, water}) {
     return {
-        id: null,
-        name: "",
-        carbohydrate: "0",
-        fat: "0",
-        organic_acid: "0",
-        protein: "0",
-        roughage: "0",
-        salt: "0",
-        sugar: "0",
-        alcohol: "0",
-        water: "0"
+        id: id ? id : null,
+        name: zeroIfUndefinedOrNull(name),
+        carbohydrate: zeroIfUndefinedOrNull(carbohydrate),
+        fat: zeroIfUndefinedOrNull(fat),
+        organic_acid: zeroIfUndefinedOrNull(organic_acid),
+        protein: zeroIfUndefinedOrNull(protein),
+        roughage: zeroIfUndefinedOrNull(roughage),
+        salt: zeroIfUndefinedOrNull(salt),
+        sugar: zeroIfUndefinedOrNull(sugar),
+        alcohol: zeroIfUndefinedOrNull(alcohol),
+        water: zeroIfUndefinedOrNull(water)
     };
+}
+
+function zeroIfUndefinedOrNull(value) {
+    return value ? value : "0";
 }

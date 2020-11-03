@@ -9,7 +9,7 @@ export const NAV_URLS = {
     HOME: "/",
     SIGN_IN: "/sign-in",
     REGISTER: "/register",
-    FOUND_MEALS: "/found-meals/:ingrIds",
+    FOUND_MEALS: "/found-meals",
     MEAL_BY_INGREDIENT_SEARCH: "/meal-by-ingredients-search",
     CREATE_INGREDIENT: "/create-ingredient"
 }
