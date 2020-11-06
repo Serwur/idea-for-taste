@@ -91,7 +91,7 @@ export function createEmptyIngredientObject() {
 export function createIngredient(id, {name, carbohydrate, fat, organic_acid, protein, roughage, salt, sugar, alcohol, water}) {
     return {
         id: id ? id : null,
-        name: zeroIfUndefinedOrNull(name),
+        name: emptyIfUndefinedOrNull(name),
         carbohydrate: zeroIfUndefinedOrNull(carbohydrate),
         fat: zeroIfUndefinedOrNull(fat),
         organic_acid: zeroIfUndefinedOrNull(organic_acid),
@@ -106,4 +106,8 @@ export function createIngredient(id, {name, carbohydrate, fat, organic_acid, pro
 
 function zeroIfUndefinedOrNull(value) {
     return value ? value : "0";
+}
+
+function emptyIfUndefinedOrNull(value) {
+    return value ? value : "";
 }

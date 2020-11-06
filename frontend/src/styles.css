@@ -4,9 +4,11 @@ html {
 
 :root {
     --main-color: #009933;
+    --main-color-dark: #006b22;
     --main-color-lighter: #00b33c;
     --main-color-lightest: #00cc44;
-    --main-text-color: #fff4f4;
+    --main-color-text: #fff4f4;
+    --main-color-gray: #c9c9c9;
 }
 
 .loading-block {
@@ -21,6 +23,7 @@ html {
 
 .navbar {
     background-color: var(--main-color);
+    box-shadow: 0px 2px var(--main-color-text);
 }
 
 .nav-item:hover {
@@ -33,37 +36,37 @@ html {
 }
 
 .navbar .navbar-brand {
-    color: var(--main-text-color);
+    color: var(--main-color-text);
 }
 
 .navbar .navbar-brand:hover, .navbar .navbar-brand:focus {
-    color: var(--main-text-color);
+    color: var(--main-color-text);
 }
 
 .navbar .navbar-text {
-    color: var(--main-text-color);
+    color: var(--main-color-text);
 }
 
 .navbar .navbar-text a {
-    color: var(--main-text-color);
+    color: var(--main-color-text);
 }
 
 .navbar .navbar-text a:hover, .navbar .navbar-text a:focus {
-    color: var(--main-text-color);
+    color: var(--main-color-text);
 }
 
 .navbar .navbar-nav .nav-link {
-    color: var(--main-text-color);
+    color: var(--main-color-text);
     border-radius: .25rem;
     margin: 0 0.25em;
 }
 
 .navbar .navbar-nav .nav-link:not(.disabled):hover, .navbar .navbar-nav .nav-link:not(.disabled):focus {
-    color: var(--main-text-color);
+    color: var(--main-color-text);
 }
 
 .navbar .navbar-nav .nav-item.active .nav-link, .navbar .navbar-nav .nav-item.active .nav-link:hover, .navbar .navbar-nav .nav-item.active .nav-link:focus, .navbar .navbar-nav .nav-item.show .nav-link, .navbar .navbar-nav .nav-item.show .nav-link:hover, .navbar .navbar-nav .nav-item.show .nav-link:focus {
-    color: var(--main-text-color);
+    color: var(--main-color-text);
     background-color: var(--main-color-lighter);
 }
 
@@ -76,19 +79,19 @@ html {
 }
 
 .navbar .navbar-toggle .navbar-toggler-icon {
-    color: var(--main-text-color);
+    color: var(--main-color-text);
 }
 
 .navbar .navbar-collapse, .navbar .navbar-form {
-    border-color: var(--main-text-color);
+    border-color: var(--main-color-text);
 }
 
 .navbar .navbar-link {
-    color: var(--main-text-color);
+    color: var(--main-color-text);
 }
 
 .navbar .navbar-link:hover {
-    color: var(--main-text-color);
+    color: var(--main-color-text);
 }
 
 .dropdown-toggle::after {
@@ -109,86 +112,86 @@ html {
 
 @media (max-width: 575px) {
     .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item {
-        color: var(--main-text-color);
+        color: var(--main-color-text);
         background-color: var(--main-color-lighter);
         transition: padding-left 0.2s ease;
     }
     .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:hover, .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item:focus {
-        color: var(--main-text-color);
+        color: var(--main-color-text);
         background-color: var(--main-color-lightest);
         padding-left: 2rem;
     }
     .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item.active {
-        color: var(--main-text-color);
+        color: var(--main-color-text);
         background-color: var(--main-color-lightest);
     }
 }
 
 .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item {
-    color: var(--main-text-color);
+    color: var(--main-color-text);
     background-color: var(--main-color-lighter);
     transition: padding-left 0.2s ease;
 }
 
 .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:hover, .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:focus {
-    color: var(--main-text-color);
+    color: var(--main-color-text);
     background-color: var(--main-color-lightest);
     padding-left: 2rem;
 }
 
 .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item.active {
-    color: var(--main-text-color);
+    color: var(--main-color-text);
     background-color: var(--main-color-lightest);
 }
 
 @media (max-width: 991px) {
     .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item {
-        color: var(--main-text-color);
+        color: var(--main-color-text);
         background-color: var(--main-color-lighter);
         transition: padding-left 0.2s ease;
     }
     .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:hover, .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item:focus {
-        color: var(--main-text-color);
+        color: var(--main-color-text);
         background-color: var(--main-color-lightest);
         padding-left: 2rem;
     }
     .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item.active {
-        color: var(--main-text-color);
+        color: var(--main-color-text);
         background-color: var(--main-color-lightest);
     }
 }
 
 @media (max-width: 1199px) {
     .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item {
-        color: var(--main-text-color);
+        color: var(--main-color-text);
         background-color: var(--main-color-lighter);
         transition: padding-left 0.2s ease;
     }
     .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:hover, .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item:focus {
-        color: var(--main-text-color);
+        color: var(--main-color-text);
         background-color: var(--main-color-lightest);
         padding-left: 2rem;
     }
     .navbar-expand-xl .navbar-nav .show .dropdown-menu .dropdown-item.active {
-        color: var(--main-text-color);
+        color: var(--main-color-text);
         background-color: var(--main-color-lightest);
     }
 }
 
 .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item {
-    color: var(--main-text-color);
+    color: var(--main-color-text);
     background-color: var(--main-color-lighter);
     transition: padding-left 0.2s ease;
 }
 
 .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:hover, .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item:focus {
-    color: var(--main-text-color);
+    color: var(--main-color-text);
     background-color: var(--main-color-lightest);
     padding-left: 2rem;
 }
 
 .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item.active {
-    color: var(--main-text-color);
+    color: var(--main-color-text);
     background-color: var(--main-color-lightest);
 }
 
@@ -222,7 +225,7 @@ html {
 
 .btn.btn-outline-primary:hover {
     background-color: var(--main-color);
-    color: var(--main-text-color);
+    color: var(--main-color-text);
 }
 
 .has-error>input, .has-error>input:focus {
@@ -242,9 +245,9 @@ html {
 
 .ingredient-item .row {
     background-color: var(--main-color);
-    border: solid var(--main-text-color) 1px;
+    border: solid var(--main-color-text) 1px;
     border-radius: 4px;
-    color: var(--main-text-color);
+    color: var(--main-color-text);
 }
 
 .ingredient-item .clickable {
@@ -256,10 +259,97 @@ html {
 }
 
 .ingredient-item a {
-    color: var(--main-text-color);
+    color: var(--main-color-text);
 }
-/* 
-.row {
-    margin-right: 0%;
-    margin-left: 0%;
-} */
+
+.page-title {
+    width: 100%;
+    background-color: var(--main-color-lighter);
+    color: var(--main-color-text);
+    font-size: 2rem;
+    border-radius: 0px 0px 1rem 1rem;
+}
+
+.creation-tab {
+    padding: 0.5rem;
+    margin: auto;
+    /* transition-duration: 0.15s; */
+    display: inline-block;
+    border-radius: 0.2rem;
+    vertical-align: top;
+}
+
+.creation-tab.visited {
+    background-color: var(--main-color);
+    color: var(--main-color-text);
+    border: none;
+}
+
+.creation-tab.not-visited {
+    background-color: white;
+    color: var(--main-color);
+    border: 0.1rem var(--main-color) solid;
+}
+
+.creation-tab.current {
+    background-color: var(--main-color-lighter);
+    color: var(--main-color-text);
+    border: none;
+    padding: 0.75rem;
+}
+
+.creation-tab:hover:not(.not-visited), .creation-tab.current:hover:not(.not-visited) {
+    background-color: white;
+    color: var(--main-color);
+    border: 0.1rem var(--main-color) solid;
+}
+
+.creation-tab.current:hover:not(.not-visited) {
+    padding: 0.65rem;
+}
+
+.creation-tab:hover:not(.not-visited) {
+    padding: 0.4rem;
+}
+
+.creation-tab:focus:active, creation-tab:focus {
+    outline: none;
+}
+
+.nav-pills {
+    display: flexbox;
+    padding: 1rem;
+    padding-top: 0.25rem;
+    margin: 1rem;
+    border-bottom: 1px var(--main-color-gray) solid;
+}
+
+.nav-pills li {
+    display: block;
+    margin: 0.5rem;
+}
+
+.nav-pills li a {
+    color: var(--main-color);
+    background-color: white;
+    border: 1px var(--main-color) solid;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    transition-duration: 0.25s;
+}
+
+.nav-pills li a.active {
+    color: white;
+    background-color: var(--main-color-lightest);
+    border: 1px var(--main-color-lightest) solid;
+}
+
+.nav-pills li a:hover {
+    color: white;
+    background-color: var(--main-color-lighter);
+    border: 1px var(--main-color-lighter) solid;
+}
+
+.nav-pills li a:hover {
+    text-decoration: none;
+}

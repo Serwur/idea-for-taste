@@ -20,11 +20,11 @@ import store from "./store";
 import { NAV_URLS } from './utility/constants';
 import setAuthorizationToken from './utility/setAuthorizationToken';
 import { setCurrentUser } from './services/user.service';
-import IngredientCreationPage from './components/ingredient/IngredientCreationPage';
 import requireAuthenticate from './components/common/requireAuthenticate';
 import notAuthenticatedOnly from "./components/common/notAuthenticatedOnly";
 import SignInModal, { hideSignInModal } from './components/login/common/SignInModal';
 import SignInPage from './components/login/page/SignInPage';
+import IngredientCreationPage from './components/ingredient/creation/IngredientCreationPage';
 
 const jwtToken = localStorage.getItem("jwtToken");
 
@@ -39,7 +39,7 @@ export default function App() {
             <Router history={history}>
                 <TopNavbar />
                 <SignInModal />
-                <div className="container-fluid pb-4">
+                <main className="container-fluid pb-4">
                     <Switch>
                         <Route exact path={NAV_URLS.HOME} component={() => <IngredientSearch listItemProps={{
                             ItemComponent: StandardIngredietListItem
@@ -51,7 +51,7 @@ export default function App() {
                         <Route exact path={NAV_URLS.CREATE_INGREDIENT} component={requireAuthenticate(IngredientCreationPage)} />
                         <Route component={NotFound} />
                     </Switch>
-                </div>
+                </main>
             </Router>
         </Provider>
     );

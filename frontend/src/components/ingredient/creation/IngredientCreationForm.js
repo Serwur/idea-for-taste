@@ -2,11 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 
-import TextFieldGroup from '../common/TextFieldGroup'
-import { setIngredientToEdit } from "../../actions/ingredientEditAction";
-import { createIngredient, updateIngredient } from '../../services/ingredient.service';
+import TextFieldGroup from '../../common/TextFieldGroup'
+import { setIngredientToEdit } from "../../../actions/ingredientEditAction";
+import { createIngredient, updateIngredient } from '../../../services/ingredient.service';
 import { isEmptyObject } from 'jquery';
 import classnames from 'classnames';
+import ComboboxFieldGroup, { option } from '../../common/ComboboxFieldGroup';
 
 class IngredientCreateForm extends React.Component {
     constructor(props) {
@@ -100,14 +101,22 @@ class IngredientCreateForm extends React.Component {
         return (
             <form className={className} onSubmit={this.onSubmit}>
                 <TextFieldGroup
+                    className="col-6"
                     field="name"
                     label="Ingredient name"
                     value={name}
                     onChange={this.onChange}
                     error={errors.name}
                 />
-                {/* <div className="row"> */}
-                <TextFieldGroup
+                <ComboboxFieldGroup
+                    label="Type:"
+                    options={[
+                        option("1", "test 1"),
+                        option("2", "test 2"),
+                        option("3", "test 3")
+                    ]}>
+                </ComboboxFieldGroup>
+                {/* <TextFieldGroup
                     className="col-6"
                     field="carbohydrate"
                     label="Carbohydrate g/100"
@@ -121,8 +130,6 @@ class IngredientCreateForm extends React.Component {
                     value={fat}
                     onChange={this.onChange}
                 />
-                {/* </div>
-                <div className="row"> */}
                 <TextFieldGroup
                     className="col-6"
                     field="organic_acid"
@@ -137,8 +144,6 @@ class IngredientCreateForm extends React.Component {
                     value={protein}
                     onChange={this.onChange}
                 />
-                {/* </div>
-                <div className="row"> */}
                 <TextFieldGroup
                     className="col-6"
                     field="roughage"
@@ -153,8 +158,6 @@ class IngredientCreateForm extends React.Component {
                     value={salt}
                     onChange={this.onChange}
                 />
-                {/* </div>
-                <div className="row"> */}
                 <TextFieldGroup
                     className="col-6"
                     field="sugar"
@@ -169,24 +172,21 @@ class IngredientCreateForm extends React.Component {
                     value={alcohol}
                     onChange={this.onChange}
                 />
-                {/* </div>
-                <div className="row"> */}
                 <TextFieldGroup
                     className="col-6"
                     field="water"
                     label="Water g/100"
                     value={water}
                     onChange={this.onChange}
-                />
-                {/* </div> */}
-                <div className="row justify-content-center pt-2">
+                /> */}
+                {/* <div className="row justify-content-center pt-2">
                     <button type="submit"
                         value="save"
                         disabled={isLoading}
                         className="btn btn-primary col-9">
                         {buttonName}
                     </button>
-                </div>
+                </div> */}
             </form>
         );
     }
@@ -208,41 +208,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { setIngredientToEdit })(IngredientCreateForm);
-
-// function IngredientCreateForm({ ingredient, ingredientSaveRequest }) {
-//     const [ingr, setIngr] = useState(ingredient ? ingredient : createEmptyIngredient());
-
-//     const onSubmit = (event) => {
-//         event.preventDefault();
-//         ingredientSaveRequest(ingr).then(data => console.log(data))
-//             .catch(err => console.log(err));
-//     }
-
-//     const onChange = (event) => {
-//         setIngr(createEmptyIngredient());
-//     }
-
-//     return (
-//         <div className="row">
-//             <form className="col-6 offset-3" onSubmit={onSubmit}>
-//                 <TextFieldGroup
-//                     field="name"
-//                     label="Ingredient name"
-//                     value={ingredient.name}
-//                     onChange={onChange}
-//                 />
-//                 <button type="submit"
-//                     value="save"
-//                     className="btn btn-primary">
-//                     {ingredient ? "Save" : "Create"}
-//                 </button>
-//             </form>
-//         </div>
-//     );
-// }
-
-// function createEmptyIngredient() {
-//     return {
-//         name: ""
-//     };
-// }
