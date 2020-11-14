@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import PropTypes from "prop-types";
+import React from 'react';
+// import PropTypes from "prop-types";
 
 import IngredientCreationForm from './IngredientCreationForm';
 
@@ -10,7 +10,6 @@ export default class IngredientCreationPage extends React.Component {
                 <div className="row page-title p-0 m-0">
                     <span className="m-2">Create ingredient</span>
                 </div>
-                
                 <ul className="nav nav-pills justify-content-center">
                     <li><a data-toggle="tab" href="#main" className="active">Main informations</a></li>
                     <li><a data-toggle="tab" href="#values">Nutritional values</a></li>
@@ -31,16 +30,3 @@ export default class IngredientCreationPage extends React.Component {
         );
     }
 }
-
-// TODO
-/*
-Create multi page ingredient creation
-page1 - name, type, image, description
-page2 - nutritional values + kcal
-page3 - optional, can skip: measures
-*/
-
-/*
- those page will be used later for edition with view like tabs
- +extra page to: delete, make public, private ingredient for searching
-*/

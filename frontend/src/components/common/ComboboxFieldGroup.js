@@ -23,7 +23,15 @@ const ComboboxFieldGroup = ({ id, className, field, options, label, error, type,
 };
 
 ComboboxFieldGroup.propTypes = {
-
+    id: PropTypes.number.isRequired,
+    className: PropTypes.string,
+    field: PropTypes.string.isRequired,
+    options: PropTypes.array.isRequired,
+    label: PropTypes.string,
+    error: PropTypes.string,
+    onChange: PropTypes.func,
+    disabled: PropTypes.bool,
+    type: PropTypes.string
 }
 
 ComboboxFieldGroup.defaultProps = {

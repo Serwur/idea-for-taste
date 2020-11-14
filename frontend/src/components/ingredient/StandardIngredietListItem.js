@@ -7,7 +7,8 @@ import history from "../../history";
 import { NAV_URLS } from "../../utility/constants";
 
 export default function StandardIngredietListItem({ ingredient }) {
-    const { id, name, alcohol, carbohydrate, fat, organic_acid, protein, roughage, salt, sugar, water } = ingredient;
+    const { id, name } = ingredient; 
+    // , alcohol, carbohydrate, fat, organic_acid, protein, roughage, salt, sugar, water
     const searchForMeals = () => {
         history.push(`${NAV_URLS.FOUND_MEALS}/${id}`)
     }

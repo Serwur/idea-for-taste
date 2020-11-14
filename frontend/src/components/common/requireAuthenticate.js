@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import history from "../../history";
 import { addFlashMessage } from "../../actions/flashMessagesAction";
+import { NAV_URLS } from "../../utility/constants";
 
 export default function (ComposedComponent) {
     class Authenticate extends React.Component {
@@ -18,7 +19,7 @@ export default function (ComposedComponent) {
                 type: "error",
                 text: "You need to login to access this page"
             });
-            history.push("/sign-in");
+            history.push(NAV_URLS.SIGN_IN);
         }
 
         componentDidMount() {

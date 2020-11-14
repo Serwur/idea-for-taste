@@ -11,7 +11,7 @@ const LOGIN_LENGTH_NOT_VALID = "Login should be length from 6 to 20";
 
 const loginSchemaCharacters = new FieldValidator();
 loginSchemaCharacters.has().not().spaces()
-    .has().not(/([!@#%^&*()+=/<>?\\,';:"{}\[\]`~])/g);
+    .has().not(/([!@#%^&*()+=/<>?\\,';:"{}[\]`~])/g);
 
 const passwordSchema = new FieldValidator();
 passwordSchema.is().min(8)

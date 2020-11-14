@@ -1,0 +1,14 @@
+.ingredient img.ingr-img {
+    width: 320px;
+    height: auto;
+}
+
+.ingredient .description {
+    text-align: justify;
+}
+
+.ingredient .list-group-item {
+    border: none;
+    margin: 0;
+    padding: 0;
+}

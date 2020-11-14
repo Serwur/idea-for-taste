@@ -1,22 +1,16 @@
 import React from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import { toInteger } from "lodash";
 import { useRouteMatch } from "react-router-dom";
 
 import mealImg from "../../../img/meal.jpeg";
 import { NAV_URLS } from "../../../utility/constants";
-import history from "../../../history";
 
 const MealView = () => {
     const parsedParams = useRouteMatch("/meal/:id");
     if (parsedParams) {
         const mealId = parsedParams.params.id;
         console.log(`mealId: ${mealId}`);
-    } else {
-        history.push("/not-found-404");
     }
-
 
     const meal = createTestMeal();
 
@@ -29,7 +23,7 @@ const MealView = () => {
             </div>
             <div className="row m-3">
                 <div className="col text-center">
-                    <img src={mealImg} className="meal-img" />
+                    <img src={mealImg} alt={`${meal.name}`} className="meal-img" />
                 </div>
             </div>
             <div className="row">
