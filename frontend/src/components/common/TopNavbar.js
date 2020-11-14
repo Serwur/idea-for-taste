@@ -69,6 +69,8 @@ class TopNavbar extends React.Component {
                                 {isAuthenticated && <DropdownItem href={NAV_URLS.CREATE_INGREDIENT} text="Create" />}
                             </Dropdown>
                             <NavItem href={NAV_URLS.MEAL_BY_INGREDIENT_SEARCH} text="Meals" />
+                            <NavItem href={`${NAV_URLS.MEAL}/1`} text="Meal view" />
+                            <NavItem href={`${NAV_URLS.INGREDIENT}/1`} text="Ingredient view" />
                         </NavItemSection>
                         <NavItemSection type="right">
                             {isAuthenticated ? userLinks : guestLinks}

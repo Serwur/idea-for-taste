@@ -1,0 +1,19 @@
+.btn.btn-primary, .btn.btn-primary:active:hover, .btn.btn-primary:active:focus {
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+}
+
+.btn.btn-primary:hover {
+    background-color: var(--main-color-lighter);
+    border-color: var(--main-color-lighter);
+}
+
+.btn.btn-outline-primary, .btn.btn-outline-primary:active:hover, .btn.btn-outline-primary:active:focus {
+    border-color: var(--main-color);
+    color: var(--main-color);
+}
+
+.btn.btn-outline-primary:hover {
+    background-color: var(--main-color);
+    color: var(--main-color-text);
+}

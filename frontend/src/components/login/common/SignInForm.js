@@ -40,7 +40,6 @@ class SignInForm extends React.Component {
 
     onSubmit(event) {
         event.preventDefault();
-
         if (this.isValid()) {
             this.setState({ validationError: {}, isLoading: true });
             setTimeout(() => {
@@ -50,13 +49,20 @@ class SignInForm extends React.Component {
                         history.push(NAV_URLS.HOME);
                     },
                     err => {
-                        const { data } = err.response;
+                        let errorMessage = null;
+                        
+                        if (err.response) {
+                            errorMessage = err.response.data.error;
+                        } else {
+                            errorMessage = err.message;
+                        }
+
                         this.setState({
                             validationError: {
-                                general: data.error
+                                general: errorMessage
                             },
                             isLoading: false
-                        })
+                        });
                     }
                 );
             }, 500);

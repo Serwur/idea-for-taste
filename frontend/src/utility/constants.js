@@ -11,5 +11,7 @@ export const NAV_URLS = {
     REGISTER: "/register",
     FOUND_MEALS: "/found-meals",
     MEAL_BY_INGREDIENT_SEARCH: "/meal-by-ingredients-search",
-    CREATE_INGREDIENT: "/create-ingredient"
+    CREATE_INGREDIENT: "/create-ingredient",
+    MEAL: "/meal",
+    INGREDIENT: "/ingredient"
 }

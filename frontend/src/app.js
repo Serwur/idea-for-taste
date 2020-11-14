@@ -2,11 +2,14 @@ import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import { Provider } from "react-redux";
 import jwt from "jsonwebtoken";
-
 import "jquery";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
-import "./styles.css";
+
+import "./styles/styles.css";
+import "./styles/meal-styles.css";
+import "./styles/navbar-styles.css";
+import "./styles/btn-styles.css";
 
 import IngredientSearch from './components/ingredient/IngredientSearch';
 import MealByIngredientSearchPage from './components/meal/page/MealByIngredientSearchPage';
@@ -25,6 +28,7 @@ import notAuthenticatedOnly from "./components/common/notAuthenticatedOnly";
 import SignInModal, { hideSignInModal } from './components/login/common/SignInModal';
 import SignInPage from './components/login/page/SignInPage';
 import IngredientCreationPage from './components/ingredient/creation/IngredientCreationPage';
+import MealView from './components/meal/singleView/MealView';
 
 const jwtToken = localStorage.getItem("jwtToken");
 
@@ -49,6 +53,8 @@ export default function App() {
                         <Route exact path={NAV_URLS.REGISTER} component={notAuthenticatedOnly(RegisterPage)} />
                         <Route exact path={NAV_URLS.SIGN_IN} component={notAuthenticatedOnly(SignInPage)} />
                         <Route exact path={NAV_URLS.CREATE_INGREDIENT} component={requireAuthenticate(IngredientCreationPage)} />
+                        <Route path={NAV_URLS.MEAL} component={MealView} />
+                        <Route path={NAV_URLS.INGREDIENT} component={MealView} />
                         <Route component={NotFound} />
                     </Switch>
                 </main>
