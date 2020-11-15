@@ -1,0 +1,20 @@
+@import "./mixins.scss";
+
+.ingredient {
+  .description {
+    text-align: justify;
+  }
+  .list-group-item {
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+  @include define-img-sizes(
+    "ingredient-img",
+    240px,
+    278px,
+    364px,
+    450px,
+    500px
+  );
+}

@@ -65,6 +65,13 @@ export class Dropdown extends React.Component {
     }
 }
 
+Dropdown.propTypes = {
+    id: PropTypes.string,
+    text: PropTypes.string,
+    children: PropTypes.array,
+    className: PropTypes.string
+};
+
 export function DropdownItem(props) {
     console.log(props);
     const { href = "#", text, className = "" } = props;

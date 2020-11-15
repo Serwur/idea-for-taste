@@ -1,0 +1,54 @@
+@import "./variables.scss";
+
+.btn {
+  &:focus {
+    outline: none !important;
+    box-shadow: 0px 0px 2px 2px $--main-color-lighter !important;
+  }
+  &:active {
+    outline: none !important;
+    background-color: $--main-color !important;
+  }
+
+  &.btn-primary {
+    &,
+    &:active:hover,
+    &:active:focus {
+      background-color: $--main-color;
+      border-color: $--main-color;
+    }
+    &:hover {
+      background-color: $--main-color-lighter;
+      border-color: $--main-color-lighter;
+    }
+    &:focus:active,
+    &:active {
+      background-color: white !important;
+      color: $--main-color !important;
+    }
+  }
+
+  &.btn-outline-primary {
+    &,
+    &:active:hover,
+    &:active:focus,
+    &:active {
+      border-color: $--main-color !important;
+      background-color: white !important;
+      color: $--main-color !important;
+    }
+    &:hover {
+      background-color: $--main-color !important;
+      color: $--main-color-text !important;
+    }
+    &:focus:active,
+    &:focus {
+      outline: {
+        color: $--main-color !important;
+        style: solid !important;
+        width: 0px !important;
+      }
+      border-color: $--main-color !important;
+    }
+  }
+}

@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { toInteger } from "lodash";
+import PropTypes from "prop-types";
 import { useRouteMatch } from "react-router-dom";
 
 import mealImg from "../../../img/meal.jpeg";
@@ -15,22 +17,25 @@ const MealView = () => {
     const meal = createTestMeal();
 
     return (
-        <div className="container meal">
+        <div className="container-sm meal">
             <div className="row">
                 <div className="col text-center">
-                    <h2 className="text-capitalize m-1 ml-2">{meal.name}</h2>
+                    <h1 className="text-capitalize m-1 ml-2">{meal.name}</h1>
                 </div>
             </div>
             <div className="row m-3">
                 <div className="col text-center">
-                    <img src={mealImg} alt={`${meal.name}`} className="meal-img" />
+                    <img src={mealImg}
+                        alt={`${meal.name}`}
+                        className="meal-img-xl meal-img-lg meal-img-md meal-img-sm meal-img" />
                 </div>
             </div>
-            <div className="row">
+            <div className="row border-top pt-2">
                 <div className="col-6 text-left">
                     <MealComponentList components={meal.components} />
                 </div>
                 <div className="col-6 text-right">
+                    <h4>Information</h4>
                     <span>Serves: {meal.serves}</span>
                     <MealTimes mealTimes={meal.times} />
                 </div>
@@ -42,22 +47,38 @@ const MealView = () => {
             </div>
         </div>
     );
-}
+};
 
 const MealComponentList = ({ components }) => {
     return (
         <>
             <h4 className="ml-2 mb-3">Components</h4>
-            <ul className="list-group">
-                {components.map((component, index) => <MealComponent key={`${component.id}-${index}`} component={component} />)}
+            <ul className="list-group-flush pl-3">
+                {components.map((component, index) =>
+                    <MealComponent key={`${component.id}-${index}`} component={component} />)
+                }
             </ul>
         </>
     );
-}
+};
+
+MealComponentList.propType = {
+    components: PropTypes.array.isRequired
+};
 
 const MealComponent = ({ component }) => {
-    return <li className="list-group-item"><a href={`${NAV_URLS.INGREDIENT}/${component.id}`}>{component.name} - {component.amount}{component.measure}</a></li>
-}
+    return (
+        <li className="list-group-item pl-0">
+            <a href={`${NAV_URLS.INGREDIENT}/${component.id}`}>
+                {component.name} - {component.amount}{component.measure}
+            </a>
+        </li>
+    );
+};
+
+MealComponent.propType = {
+    component: PropTypes.object.isRequired
+};
 
 const MealTimes = ({ mealTimes }) => {
     return (
@@ -75,11 +96,11 @@ const MealTimes = ({ mealTimes }) => {
             default: return "url_time";
         }
     }
-}
+};
 
 const RecipeStepsList = ({ steps }) => {
     return steps.map((step, stepIndex) => <RecipeStep key={`step-${stepIndex}`} step={step} stepNo={stepIndex + 1} />);
-}
+};
 
 const RecipeStep = ({ stepNo, step }) => {
     const title = (stepNo, step) => {
@@ -90,11 +111,11 @@ const RecipeStep = ({ stepNo, step }) => {
 
     return (
         <div className="meal-step">
-            <h3 className="title">{title(stepNo, step)}</h3>
+            <h3 className="title border-bottom">{title(stepNo, step)}</h3>
             <p className="description">{step.description}</p>
         </div>
     );
-}
+};
 
 const MEAL_TIME_TYPE = {
     PREPARATION: "preparation",

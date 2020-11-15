@@ -1,0 +1,15 @@
+@import "./mixins.scss";
+
+.meal {
+  .meal-step {
+    .title {
+      padding: 0.5rem;
+    }
+    .description {
+      text-align: justify;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+  }
+  @include define-img-sizes(meal-img, 265px, 298px, 384px, 461px, 540px);
+}

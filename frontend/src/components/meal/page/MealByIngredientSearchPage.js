@@ -38,13 +38,13 @@ export default class MealByIngredientSearchPage extends React.Component {
     render() {
         return (
             <div className="row">
-                <div id="choosen-ingr-list" className="col-5 col-md-4 col-lg-4">
+                <div id="choosen-ingr-list" className="col-12 col-sm-5 col-md-4 col-lg-4">
                     <ChoosenIngredientsList
                         ingredients={[...this.state.ingredients.values()]}
                         removeItem={this.removeItem} />
                 </div>
 
-                <div className="col-7 col-md-8 col-lg-8">
+                <div className="col-12 col-sm-7 col-md-8 col-lg-8">
                     <IngredientSearch listItemProps={
                         {
                             ItemComponent: IngrListItemAdd,

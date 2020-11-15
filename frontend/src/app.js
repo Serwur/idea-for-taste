@@ -6,11 +6,11 @@ import "jquery";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
 
-import "./styles/styles.css";
-import "./styles/meal-styles.css";
-import "./styles/navbar-styles.css";
-import "./styles/btn-styles.css";
-import "./styles/ingredient-styles.css";
+import "./styles/dist/main.css";
+import "./styles/dist/meal-styles.css";
+import "./styles/dist/navbar-styles.css";
+import "./styles/dist/btn-styles.css";
+import "./styles/dist/ingredient-styles.css";
 
 import IngredientSearch from "./components/ingredient/IngredientSearch";
 import MealByIngredientSearchPage from "./components/meal/page/MealByIngredientSearchPage";
@@ -30,7 +30,6 @@ import SignInModal from "./components/login/common/SignInModal";
 import SignInPage from "./components/login/page/SignInPage";
 import IngredientCreationPage from "./components/ingredient/creation/IngredientCreationPage";
 import MealView from "./components/meal/singleView/MealView";
-import handleError from "./components/common/handleError";
 import IngredientView from "./components/ingredient/singleView/IngredientView";
 
 const jwtToken = localStorage.getItem("jwtToken");

@@ -1,0 +1,132 @@
+@import "./mixins.scss";
+
+.top-navbar-offset {
+  display: block;
+  margin-top: 56px;
+}
+
+.navbar {
+  background-color: var(--main-color);
+  box-shadow: 0px 2px var(--main-color-text);
+}
+
+.nav-item:hover {
+  background-color: var(--main-color-lighter);
+  border-radius: 2px;
+}
+
+.navbar .nav-item:hover .nav-link {
+  font-weight: 500;
+}
+
+.navbar .navbar-brand {
+  color: var(--main-color-text);
+}
+
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:focus {
+  color: var(--main-color-text);
+}
+
+.navbar .navbar-text {
+  color: var(--main-color-text);
+}
+
+.navbar .navbar-text a {
+  color: var(--main-color-text);
+}
+
+.navbar .navbar-text a:hover,
+.navbar .navbar-text a:focus {
+  color: var(--main-color-text);
+}
+
+.navbar .navbar-nav .nav-link {
+  color: var(--main-color-text);
+  border-radius: 0.25rem;
+  margin: 0 0.25em;
+}
+
+.navbar .navbar-nav .nav-link:not(.disabled):hover,
+.navbar .navbar-nav .nav-link:not(.disabled):focus {
+  color: var(--main-color-text);
+}
+
+.navbar .navbar-nav .nav-item.active .nav-link,
+.navbar .navbar-nav .nav-item.active .nav-link:hover,
+.navbar .navbar-nav .nav-item.active .nav-link:focus,
+.navbar .navbar-nav .nav-item.show .nav-link,
+.navbar .navbar-nav .nav-item.show .nav-link:hover,
+.navbar .navbar-nav .nav-item.show .nav-link:focus {
+  padding-left: 1rem;
+  color: var(--main-color-text);
+  background-color: var(--main-color-lighter);
+}
+
+.navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item {
+  color: $--main-color-text;
+  background-color: $--main-color-lighter;
+  transition: padding-left 0.2s ease;
+}
+.navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:hover,
+.navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item:focus {
+  color: $--main-color-text;
+  background-color: $--main-color-lightest;
+  padding-left: 2rem;
+}
+.navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item.active {
+  color: $--main-color-text;
+  background-color: $--main-color-lightest;
+}
+
+.navbar .navbar-toggle {
+  border-color: var(--main-color-lighter);
+}
+
+.navbar .navbar-toggle:hover,
+.navbar .navbar-toggle:focus {
+  background-color: var(--main-color-lighter);
+}
+
+.navbar .navbar-toggle .navbar-toggler-icon {
+  color: var(--main-color-text);
+}
+
+.navbar .navbar-toggler:focus {
+    outline: {
+        style: solid;
+        color: $--main-color-lighter;
+        width: 2px;
+    }
+}
+
+.navbar .navbar-collapse,
+.navbar .navbar-form {
+  border-color: var(--main-color-text);
+}
+
+.navbar .navbar-link {
+  color: var(--main-color-text);
+}
+
+.navbar .navbar-link:hover {
+  color: var(--main-color-text);
+}
+
+.dropdown-toggle::after {
+  transition: transform 0.1s linear;
+}
+
+.show.dropdown .dropdown-toggle::after {
+  transform: scale(1.2);
+}
+
+.dropdown-menu {
+  margin-top: 0;
+}
+
+.dropdown-menu.show {
+  background-color: var(--main-color-lighter);
+}
+
+@include define-navbar(md);

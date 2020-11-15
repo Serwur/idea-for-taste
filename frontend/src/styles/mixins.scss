@@ -1,0 +1,71 @@
+@import "./bootstrap-mixins.scss";
+@import "./variables.scss";
+
+@mixin define-img-sizes($name, $xs, $sm, $md, $lg, $xl) {
+  @include media-breakpoint-up(xs) {
+    img.#{$name} {
+      width: $xs;
+      height: auto;
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    img.#{$name}-sm {
+      width: $sm;
+      height: auto;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    img.#{$name}-md {
+      width: $md;
+      height: auto;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    img.#{$name}-lg {
+      width: $lg;
+      height: auto;
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    img.#{$name}-xl {
+      width: $xl;
+      height: auto;
+    }
+  }
+}
+
+@mixin define-navbar($size) {
+  @include media-breakpoint-up(#{$size}) {
+    .navbar-expand-#{$size} .navbar-nav .show .dropdown-menu .dropdown-item {
+      color: $--main-color-text;
+      background-color: $--main-color-lighter;
+      transition: padding-left 0.2s ease;
+    }
+    .navbar-expand-#{$size}
+      .navbar-nav
+      .show
+      .dropdown-menu
+      .dropdown-item:hover,
+    .navbar-expand-#{$size}
+      .navbar-nav
+      .show
+      .dropdown-menu
+      .dropdown-item:focus {
+      color: $--main-color-text;
+      background-color: $--main-color-lightest;
+      padding-left: 2rem;
+    }
+    .navbar-expand-#{$size}
+      .navbar-nav
+      .show
+      .dropdown-menu
+      .dropdown-item.active {
+      color: $--main-color-text;
+      background-color: $--main-color-lightest;
+    }
+  }
+}

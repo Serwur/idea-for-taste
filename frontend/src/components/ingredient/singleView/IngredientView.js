@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { round, toInteger } from "lodash";
 import { useRouteMatch } from "react-router-dom";
 
@@ -18,32 +19,35 @@ const IngredientView = () => {
         <div className="container ingredient">
             <div className="row">
                 <div className="col text-center">
-                    <h2 className="text-capitalize m1 ml-2">{ingredient.name}</h2>
+                    <h1 className="text-capitalize m1 ml-2">{ingredient.name}</h1>
                 </div>
             </div>
             <div className="row m-3">
-                <div className="col text-center">
-                    <img src={ingrImg} alt={`${ingredient.name}`} className="ingr-img" />
+                <div className="col p-0 m-0 text-center">
+                    <img src={ingrImg} alt={`${ingredient.name}`}
+                        className="ingredient-img ingredient-img-sm ingredient-img-md ingredient-img-lg ingredient-img-xl" />
                 </div>
             </div>
             <div className="row">
-                <div className="col-xl-9 col-md-8 col-sm-7 col-6">
+                <div className="col-xl-9 col-md-8 col-sm-7 col-12 p-sm-1 p-0">
+                    <button className="btn btn-primary mr-4">test primary</button>
+                    <button className="btn btn-outline-primary">test primary outline</button>
                     <h4>Description</h4>
                     <p className="description">{ingredient.description}</p>
                 </div>
-                <div className="col-xl-3 col-md-4 col-sm-5 col-6">
+                <div className="col-xl-3 col-md-4 col-sm-5 col-12 p-sm-1 p-0">
                     <IngredientNutritionalValues ingredient={ingredient} />
                 </div>
             </div>
         </div>
     );
-}
+};
 
 const IngredientNutritionalValues = ({ ingredient }) => {
     return (
-        <div className="text-right">
+        <div className="text-sm-right">
             <h4>Nutritional values</h4>
-            <div className="list-group pb-2">
+            <div className="list-group pb-2 text-sm-right">
                 <NutritionalValue name="Protein" value={ingredient.protein} />
                 <NutritionalValue name="Fat" value={ingredient.fat} />
                 <NutritionalValue name="Carbohydrate" value={ingredient.carbohydrate} />
@@ -58,11 +62,20 @@ const IngredientNutritionalValues = ({ ingredient }) => {
             <p>{round(Math.random() * 750 + 50, 1)} / 100g</p>
         </div>
     );
-}
+};
+
+IngredientNutritionalValues.propTypes = {
+    ingredient: PropTypes.object.isRequired
+};
 
 const NutritionalValue = ({ name, value }) => {
-    return <div className="list-group-item text-right">{name}: {value}g / 100g</div>
-}
+    return <div className="list-group-item">{name}: {value}g / 100g</div>;
+};
+
+NutritionalValue.propTypes = {
+    name: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired
+};
 
 function createTestIngredient() {
     const ingredient = createIngredient(toInteger(Math.random() * 10000000), {

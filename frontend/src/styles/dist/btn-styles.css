@@ -1,0 +1,35 @@
+.btn:focus {
+  outline: none !important;
+  box-shadow: 0px 0px 2px 2px #00b33c !important;
+}
+.btn:active {
+  outline: none !important;
+  background-color: #009933 !important;
+}
+.btn.btn-primary, .btn.btn-primary:active:hover, .btn.btn-primary:active:focus {
+  background-color: #009933;
+  border-color: #009933;
+}
+.btn.btn-primary:hover {
+  background-color: #00b33c;
+  border-color: #00b33c;
+}
+.btn.btn-primary:focus:active, .btn.btn-primary:active {
+  background-color: white !important;
+  color: #009933 !important;
+}
+.btn.btn-outline-primary, .btn.btn-outline-primary:active:hover, .btn.btn-outline-primary:active:focus, .btn.btn-outline-primary:active {
+  border-color: #009933 !important;
+  background-color: white !important;
+  color: #009933 !important;
+}
+.btn.btn-outline-primary:hover {
+  background-color: #009933 !important;
+  color: #fff4f4 !important;
+}
+.btn.btn-outline-primary:focus:active, .btn.btn-outline-primary:focus {
+  outline-color: #009933 !important;
+  outline-style: solid !important;
+  outline-width: 0px !important;
+  border-color: #009933 !important;
+}

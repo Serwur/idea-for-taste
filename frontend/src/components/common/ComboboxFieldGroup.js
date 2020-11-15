@@ -32,7 +32,7 @@ ComboboxFieldGroup.propTypes = {
     onChange: PropTypes.func,
     disabled: PropTypes.bool,
     type: PropTypes.string
-}
+};
 
 ComboboxFieldGroup.defaultProps = {
 
