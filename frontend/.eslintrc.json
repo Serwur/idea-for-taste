@@ -1,25 +1,22 @@
 {
-  "env": {
-    "browser": true,
-    "es2021": true
-  },
-  "extends": "plugin:react/recommended",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
+    "env": {
+        "browser": true,
+        "es6": true
     },
-    "ecmaVersion": 12,
-    "sourceType": "module"
-  },
-  "plugins": ["react"],
-  "rules": {
-    "semi": "error",
-    "no-empty": "error",
-    "no-var": "error",
-    "prefer-const": "warn",
-    "constructor-super": "error",
-    "no-const-assign": "error",
-    "no-dupe-class-members": "error",
-    "no-this-before-super": "error"
-  }
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+    }
 }
