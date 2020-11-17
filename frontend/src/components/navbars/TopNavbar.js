@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import $ from "jquery";
 
-import { NavCollapse, NavItemSection, NavItem, Dropdown, DropdownItem, NavItemButton } from "../../utility/navbar-factory";
+import { NavCollapse, NavItemSection, NavItem, Dropdown, DropdownItem, NavItemButton } from "./navbarFactory";
 import { NAV_URLS } from "../../utility/constants";
 import { logout } from "../../services/user.service";
 

@@ -12,11 +12,11 @@ import "./styles/dist/navbar-styles.css";
 import "./styles/dist/btn-styles.css";
 import "./styles/dist/ingredient-styles.css";
 
-import IngredientSearch from "./components/ingredient/IngredientSearch";
+import IngredientSearch from "./components/ingredient/search/IngredientSearch";
 import MealByIngredientSearchPage from "./components/meal/page/MealByIngredientSearchPage";
-import StandardIngredietListItem from "./components/ingredient/StandardIngredietListItem";
+import StandardIngredietListItem from "./components/ingredient/lists/listItems/StandardIngredietListItem";
 import FoundMealsPage from "./components/meal/page/FoundMealsPage";
-import TopNavbar from "./components/common/TopNavbar";
+import TopNavbar from "./components/navbars/TopNavbar";
 import RegisterPage from "./components/login/page/RegisterPage";
 import history from "./history";
 import NotFound from "./components/errors/NotFound";

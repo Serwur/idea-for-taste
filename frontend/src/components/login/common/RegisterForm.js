@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import TextFieldGroup from "../../common/TextFieldGroup";
+import TextFieldGroup from "../../fieldGroup/TextFieldGroup";
 import { validateUserRegister } from "../../../validation/user/register";
 
 class RegisterForm extends React.Component {

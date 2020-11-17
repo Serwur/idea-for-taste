@@ -1,9 +1,9 @@
 import React from 'react'
 import { useSelector } from "react-redux";
 
-import IngredientList from './IngredientList';
+import IngredientList from '../lists/IngredientList';
 import { LoopCircleLoading as Loading } from "react-loadingg";
-import { renderLoading } from "../common/common"
+import { renderLoading } from "../../common/loading"
 
 const SEARCH_STATE = {
     SUCCESS: 1,

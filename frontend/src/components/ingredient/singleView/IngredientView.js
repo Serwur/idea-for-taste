@@ -5,9 +5,19 @@ import { useRouteMatch } from "react-router-dom";
 
 import ingrImg from "./../../../img/ingredient.jpg";
 import { createIngredient } from "../../../utility/ingredients-funs";
+import history from "../../../history";
+import { NAV_URLS } from "../../../utility/constants";
 
 const IngredientView = () => {
     const parsedParams = useRouteMatch("/ingredient/:id");
+    let ingrId = null;
+    if (parsedParams) ingrId = parsedParams.params.id;
+    else history.push("/not-found-404");
+
+    const showMeals = (ingrId) => {
+        history.push(`${NAV_URLS.FOUND_MEALS}/${ingrId}`);
+    };
+
     if (parsedParams) {
         const ingredientId = parsedParams.params.id;
         console.log(`ingredientId: ${ingredientId}`);
@@ -29,9 +39,16 @@ const IngredientView = () => {
                 </div>
             </div>
             <div className="row">
+                <button className="col btn btn-outline-primary p-1 m-1"
+                    onClick={() => showMeals(ingrId)}>
+                    Meals 🥘
+                </button>
+                <button className="col btn btn-outline-primary p-1 m-1">
+                    Add to list ➕
+                </button>
+            </div>
+            <div className="row">
                 <div className="col-xl-9 col-md-8 col-sm-7 col-12 p-sm-1 p-0">
-                    <button className="btn btn-primary mr-4">test primary</button>
-                    <button className="btn btn-outline-primary">test primary outline</button>
                     <h4>Description</h4>
                     <p className="description">{ingredient.description}</p>
                 </div>
@@ -74,7 +91,7 @@ const NutritionalValue = ({ name, value }) => {
 
 NutritionalValue.propTypes = {
     name: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired
+    value: PropTypes.number.isRequired
 };
 
 function createTestIngredient() {

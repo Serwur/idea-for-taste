@@ -17,7 +17,6 @@ export default function FoundMealsPage() {
             fetch(mealCompUrl)
                 .then(response => response.json())
                 .then(data => {
-
                     const results = new Map();
                     data.forEach(meal => results.set(meal.id, meal));
                     setFetchedData({ isLoading: false, results: results });
@@ -45,7 +44,7 @@ function useItemsPerRows() {
     useLayoutEffect(() => {
         const updateItemsPerRow = () => {
             setItemsPerRow(getRenderedItemsPerRow(window.innerWidth));
-        }
+        };
         window.addEventListener("resize", updateItemsPerRow);  
         return () => window.removeEventListener("resize", getRenderedItemsPerRow);
     }, []);
@@ -91,7 +90,7 @@ function renderRow(components, key) {
             {components.map(component => {
                 return <div key={`meal-item-${keyCount++}`} className={`col-${itemsCount}`}>
                     {component}
-                </div>
+                </div>;
             })}
         </div>
     );

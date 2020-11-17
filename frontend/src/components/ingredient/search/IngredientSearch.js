@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from 'react-redux';
+import PropTypes from "prop-types";
 
-import * as IngrUtils from "../../utility/ingredients-funs";
+import * as IngrUtils from "../../../utility/ingredients-funs";
 import IngredientSearchForm from "./IngredientSearchForm";
-import { findIngredientsByName } from "../../services/ingredient.service";
-import { setLastSearchName, setLastSearchResult } from "../../actions/ingredientSearchAction";
+import { findIngredientsByName } from "../../../services/ingredient.service";
+import { setLastSearchName, setLastSearchResult } from "../../../actions/ingredientSearchAction";
 import IngredientSearchResult from "./IngredientSearchResult";
 
 class IngredientSearch extends React.Component {
@@ -33,7 +34,7 @@ class IngredientSearch extends React.Component {
         event.preventDefault();
         if (this.state.ingrName) {
             this.setState({ prevEntry: this.state.ingrName });
-            this.fetchIngredients(this.state.ingrName)
+            this.fetchIngredients(this.state.ingrName);
         }
     }
 
@@ -83,6 +84,12 @@ class IngredientSearch extends React.Component {
         );
     }
 }
+
+IngredientSearch.propTypes = {
+    setLastSearchResult: PropTypes.func.isRequired,
+    findIngredientsByName: PropTypes.func.isRequired,
+    listItemProps: PropTypes.object
+};
 
 function mapStateToProps(state) {
     const { result, lastSearchName } = state;

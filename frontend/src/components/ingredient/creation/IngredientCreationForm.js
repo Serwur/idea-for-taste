@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
-
-import TextFieldGroup from '../../common/TextFieldGroup'
-import { setIngredientToEdit } from "../../../actions/ingredientEditAction";
-import { createIngredient, updateIngredient } from '../../../services/ingredient.service';
 import { isEmptyObject } from 'jquery';
 import classnames from 'classnames';
-import ComboboxFieldGroup, { option } from '../../common/ComboboxFieldGroup';
+
+import { setIngredientToEdit } from "../../../actions/ingredientEditAction";
+import { createIngredient, updateIngredient } from '../../../services/ingredient.service';
+import TextFieldGroup from '../../fieldGroup/TextFieldGroup'
+import ComboboxFieldGroup, { option } from '../../fieldGroup/ComboboxFieldGroup';
 
 class IngredientCreateForm extends React.Component {
     constructor(props) {

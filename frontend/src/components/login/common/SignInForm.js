@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import validateSignIn from "../../../validation/user/sign-in";
-import TextFieldGroup from "../../common/TextFieldGroup";
+import TextFieldGroup from "../../fieldGroup/TextFieldGroup";
 import { signInRequest } from "../../../services/user.service";
 import history from "../../../history";
 import { Link } from "react-router-dom";
 import { hideSignInModal } from "./SignInModal";
 import { LoopCircleLoading as Loading } from "react-loadingg";
-import { renderLoading } from "../../common/common";
+import { renderLoading } from "../../common/loading";
 import { NAV_URLS } from "../../../utility/constants";
 
 class SignInForm extends React.Component {

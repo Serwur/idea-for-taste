@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-import missingImage from "./../../img/missing_image.png";
 import PropTypes from "prop-types";
-import history from "../../history";
-import { NAV_URLS } from "../../utility/constants";
+
+import missingImage from "./../../../../img/missing_image.png";
+import history from "../../../../history";
+import { NAV_URLS } from "../../../../utility/constants";
 
 export default function StandardIngredietListItem({ ingredient }) {
     const { id, name } = ingredient; 

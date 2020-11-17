@@ -1,6 +1,6 @@
 import React from "react";
 
-import ChoosenIngredientsListItem from "../meal/common/MealSearchIngredientListItem";
+import ChoosenIngredientsListItem from "../../meal/common/MealSearchIngredientListItem";
 import { useHistory } from "react-router-dom";
 
 export default function ChoosenIngredientsList({ ingredients, removeItem }) {
