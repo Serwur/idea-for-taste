@@ -7,41 +7,37 @@ import ingrImg from "./../../../img/ingredient.jpg";
 import { createIngredient } from "../../../utility/ingredients-funs";
 import history from "../../../history";
 import { NAV_URLS } from "../../../utility/constants";
-import ImageView from "../../common/ImageView";
+import ImageView from "../../common/singleView/ImageView";
+import TitleView from "../../common/singleView/TitleView";
 
 const IngredientView = () => {
     const parsedParams = useRouteMatch("/ingredient/:id");
-    let ingrId = null;
-    if (parsedParams) ingrId = parsedParams.params.id;
+
+    let ingredientId = null;
+
+    if (parsedParams) ingredientId = parsedParams.params.id;
     else history.push("/not-found-404");
+
+    const ingredient = createTestIngredient();
+    const viewId = `ingredient-view-${ingredientId}`;
 
     const showMeals = (ingrId) => {
         history.push(`${NAV_URLS.FOUND_MEALS}/${ingrId}`);
     };
 
-    if (parsedParams) {
-        const ingredientId = parsedParams.params.id;
-        console.log(`ingredientId: ${ingredientId}`);
-    }
-
-    const ingredient = createTestIngredient();
-
     return (
         <div className="container ingredient">
-            <div className="row">
-                <div className="col text-center">
-                    <h1 className="text-capitalize m1 ml-2">{ingredient.name}</h1>
-                </div>
-            </div>
-            <div className="row m-3">
-                <ImageView imgSrc={ingrImg}
-                    alt={`${ingredient.name}`}
-                    imgSizeClass="ingredient-img"
-                />
-            </div>
+            <TitleView viewId={viewId} title={ingredient.name} />
+            <ImageView
+                viewId={viewId}
+                imgSrc={ingrImg}
+                alt={`${ingredient.name}`}
+                imgSizeClass="ingredient-img"
+                title={ingredient.name}
+            />
             <div className="row">
                 <button className="col btn btn-outline-primary p-1 m-1"
-                    onClick={() => showMeals(ingrId)}>
+                    onClick={() => showMeals(ingredientId)}>
                     Meals 🥘
                 </button>
                 <button className="col btn btn-outline-primary p-1 m-1">

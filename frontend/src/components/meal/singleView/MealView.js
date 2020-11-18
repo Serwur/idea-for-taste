@@ -3,34 +3,29 @@ import React from "react";
 import { toInteger } from "lodash";
 import PropTypes from "prop-types";
 import { useRouteMatch } from "react-router-dom";
+import { connect } from "react-redux";
 
 import mealImg from "../../../img/meal.jpeg";
 import { NAV_URLS } from "../../../utility/constants";
-import ImageView from "../../common/ImageView";
-import { connect } from "react-redux";
+import ImageView from "../../common/singleView/ImageView";
+import TitleView from "../../common/singleView/TitleView";
 
 const MealView = (props) => {
     const parsedParams = useRouteMatch("/meal/:id");
-    if (parsedParams) {
-        const mealId = parsedParams.params.id;
-        console.log(`mealId: ${mealId}`);
-    }
-
+    const mealId = parsedParams.params.id;
     const meal = createTestMeal();
+    const viewId = `meal-view-${mealId}`;
 
     return (
         <div className="container-sm meal">
-            <div className="row">
-                <div className="col text-center">
-                    <h1 className="text-capitalize m-1 ml-2">{meal.name}</h1>
-                </div>
-            </div>
-            <div className="row m-3">
-                <ImageView imgSrc={mealImg}
-                    alt={`${meal.name}`}
-                    imgSizeClass="meal-img"
-                />
-            </div>
+            <TitleView viewId={viewId} title={meal.name} />
+            <ImageView
+                viewId={viewId}
+                imgSrc={mealImg}
+                alt={`${meal.name}`}
+                imgSizeClass="meal-img"
+                title={meal.name}
+            />
             <div className="row pb-2">
                 <button className="col btn btn-outline-primary">Add to favourites ⭐</button>
             </div>
@@ -137,7 +132,7 @@ export default connect(mapStateToProps, {})(MealView);
 
 function createTestMeal() {
     return {
-        name: "super ultra meal 320 120",
+        name: "Super ultra meal, without any gluten and uranium, with tomato sauce",
         image: "image url",
         components: [
             createComponent("onion", 3, "kg"),
