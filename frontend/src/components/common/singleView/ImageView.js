@@ -2,7 +2,6 @@ import React from "react";
 import classnames from "classnames";
 
 import { combineAllBootstrapSizes } from "../../../utility/classNames-helpers";
-import { getImgId } from "../../../utility/singleViewIds";
 
 export default function ImageView({ imgSrc, alt, imgSizeClass, className, title }) {
     const mainElementClass = classnames("text-center-sm", "img-view", className);

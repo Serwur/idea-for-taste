@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
-import $ from "jquery";
-import { getImgId, getTitleId } from "../../../utility/singleViewIds";
+import React from "react";
 
 export default function TitleView({ title }) {
     return (

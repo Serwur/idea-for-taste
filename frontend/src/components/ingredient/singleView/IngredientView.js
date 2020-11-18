@@ -41,10 +41,10 @@ const IngredientView = () => {
             <div className="row">
                 <button className="col btn btn-outline-primary p-1 m-1"
                     onClick={() => showMeals(ingredientId)}>
-                    Meals 🥘
+                    Meals <span role="img" aria-label="meals-icon">🥘</span>
                 </button>
                 <button className="col btn btn-outline-primary p-1 m-1">
-                    Add to list ➕
+                    Add to list <span role="img" aria-label="add-to-list-icon">➕</span>
                 </button>
             </div>
             <div className="row">

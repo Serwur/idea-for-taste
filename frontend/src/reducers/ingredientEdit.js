@@ -8,4 +8,4 @@ export default (state = createEmptyIngredientObject(), action = {}) => {
         default:
             return state;
     }
-}
+};

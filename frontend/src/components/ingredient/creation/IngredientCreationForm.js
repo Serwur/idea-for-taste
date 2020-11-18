@@ -1,13 +1,13 @@
-import React from 'react'
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { isEmptyObject } from 'jquery';
-import classnames from 'classnames';
+import { isEmptyObject } from "jquery";
+import classnames from "classnames";
 
 import { setIngredientToEdit } from "../../../actions/ingredientEditAction";
-import { createIngredient, updateIngredient } from '../../../services/ingredient.service';
-import TextFieldGroup from '../../fieldGroup/TextFieldGroup'
-import ComboboxFieldGroup, { option } from '../../fieldGroup/ComboboxFieldGroup';
+import { createIngredient, updateIngredient } from "../../../services/ingredient.service";
+import TextFieldGroup from "../../fieldGroup/TextFieldGroup";
+import ComboboxFieldGroup, { option } from "../../fieldGroup/ComboboxFieldGroup";
 
 class IngredientCreateForm extends React.Component {
     constructor(props) {
@@ -17,7 +17,7 @@ class IngredientCreateForm extends React.Component {
             ingredient: this.props.ingredient,
             errors: {},
             isLoading: false
-        }
+        };
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -26,7 +26,7 @@ class IngredientCreateForm extends React.Component {
     }
 
     getValidateErrors() {
-        let errors = {};
+        const errors = {};
 
         if (!this.state.ingredient.name) {
             errors.name = "Name cannot be empty";
@@ -64,7 +64,7 @@ class IngredientCreateForm extends React.Component {
                             });
                             break;
                         default:
-                            this.setState({ errors: { general: "Ups...we cannot update this ingredient, something strange happened =(" } })
+                            this.setState({ errors: { general: "Ups...we cannot update this ingredient, something strange happened =(" } });
                             break;
                     }
                 })
@@ -92,10 +92,8 @@ class IngredientCreateForm extends React.Component {
     }
 
     render() {
-        const { name, carbohydrate, fat, organic_acid, protein, roughage, salt, sugar, alcohol, water } = this.state.ingredient;
-        const buttonName = this.state.ingredient.id ? "Save" : "Create";
+        const { name } = this.state.ingredient;
         const errors = this.state.errors;
-        const isLoading = this.state.isLoading;
         const className = classnames({ [`${this.props.className}`]: this.props.className });
 
         return (
