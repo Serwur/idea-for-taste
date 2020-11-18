@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useEffect } from "react";
 import { toInteger } from "lodash";
 import PropTypes from "prop-types";
 import { useRouteMatch } from "react-router-dom";
 import { connect } from "react-redux";
+import $ from "jquery";
+import classnames from "classnames";
 
 import mealImg from "../../../img/meal.jpeg";
 import { NAV_URLS } from "../../../utility/constants";
@@ -17,29 +19,37 @@ const MealView = (props) => {
     const viewId = `meal-view-${mealId}`;
 
     return (
-        <div className="container-sm meal">
+        <div className="container-sm meal single-view">
             <TitleView viewId={viewId} title={meal.name} />
-            <ImageView
-                viewId={viewId}
-                imgSrc={mealImg}
-                alt={`${meal.name}`}
-                imgSizeClass="meal-img"
-                title={meal.name}
-            />
-            <div className="row pb-2">
-                <button className="col btn btn-outline-primary">Add to favourites ⭐</button>
+            <div className="row p-1">
+                <ImageView
+                    className="col-sm-9 col-12 pb-2 pb-sm-0"
+                    imgSrc={mealImg}
+                    alt={`${meal.name}`}
+                    imgSizeClass="meal-img"
+                    title={meal.name}
+                />
+                <div className="col-sm-3 col-12 p-0">
+                    <div className="row m-1">
+                        <button className="col btn btn-outline-primary">Add to favourites ⭐</button>
+                    </div>
+                    <div className="row m-1">
+                        <button className="col btn btn-outline-primary">Edit 🛠</button>
+                    </div>
+                    <div className="row m-1 d-none d-sm-flex">
+                        <MealInformations className="col text-right" meal={meal} />
+                    </div>
+                </div>
             </div>
-            <div className="row border-top pt-2">
+            <div className="row mt-2">
                 <div className="col-6 text-left">
                     <MealComponentList components={meal.components} />
                 </div>
-                <div className="col-6 text-right">
-                    <h4>Information</h4>
-                    <span>Serves: {meal.serves}</span>
-                    <MealTimes mealTimes={meal.times} />
+                <div className="col-6 text-right d-sm-none d-flex">
+                    <MealInformations meal={meal} />
                 </div>
             </div>
-            <div className="row mt-4">
+            <div className="row">
                 <div className="col">
                     <RecipeStepsList steps={meal.recipeSteps} />
                 </div>
@@ -48,11 +58,22 @@ const MealView = (props) => {
     );
 };
 
+const MealInformations = ({ className, meal }) => {
+    const compClassName = classnames(className, "n-lines");
+    return (
+        <div className={compClassName}>
+            <span>Serves: {meal.serves}</span>
+            <span>Difficulty: {meal.difficulty}</span>
+            <MealTimes mealTimes={meal.times} />
+        </div>
+    );
+};
+
 const MealComponentList = ({ components }) => {
     return (
         <>
-            <h4 className="ml-2 mb-3">Components</h4>
-            <ul className="list-group-flush pl-3">
+            <h4 className="ml-2">Components</h4>
+            <ul className="list-unstyled pl-3">
                 {components.map((component, index) =>
                     <MealComponent key={`${component.id}-${index}`} component={component} />)
                 }
@@ -67,7 +88,7 @@ MealComponentList.propType = {
 
 const MealComponent = ({ component }) => {
     return (
-        <li className="list-group-item pl-0">
+        <li className="p-1 pl-0">
             <a href={`${NAV_URLS.INGREDIENT}/${component.id}`}>
                 {component.name} - {component.amount}{component.measure}
             </a>
@@ -155,7 +176,9 @@ function createTestMeal() {
             createTime(15, MEAL_TIME_TYPE.COOK),
             createTime(12, MEAL_TIME_TYPE.BAKE)
         ],
-        serves: 2
+        serves: 2,
+        creatorId: 1,
+        difficulty: "easy"
     };
 }
 

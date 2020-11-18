@@ -26,15 +26,18 @@ const IngredientView = () => {
     };
 
     return (
-        <div className="container ingredient">
+        <div className="container ingredient single-view">
             <TitleView viewId={viewId} title={ingredient.name} />
-            <ImageView
-                viewId={viewId}
-                imgSrc={ingrImg}
-                alt={`${ingredient.name}`}
-                imgSizeClass="ingredient-img"
-                title={ingredient.name}
-            />
+            <div className="row pb-2">
+                <ImageView
+                    className="col text-center"
+                    viewId={viewId}
+                    imgSrc={ingrImg}
+                    alt={`${ingredient.name}`}
+                    imgSizeClass="ingredient-img"
+                    title={ingredient.name}
+                />
+            </div>
             <div className="row">
                 <button className="col btn btn-outline-primary p-1 m-1"
                     onClick={() => showMeals(ingredientId)}>

@@ -167,3 +167,9 @@ html {
 .img-view img {
   margin: auto;
 }
+
+.n-lines span {
+  display: block;
+  width: auto;
+  height: auto;
+}
