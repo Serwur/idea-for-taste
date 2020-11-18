@@ -11,6 +11,7 @@ import "./styles/dist/meal-styles.css";
 import "./styles/dist/navbar-styles.css";
 import "./styles/dist/btn-styles.css";
 import "./styles/dist/ingredient-styles.css";
+import "./styles/dist/form-field-group.css";
 
 import IngredientSearch from "./components/ingredient/search/IngredientSearch";
 import MealByIngredientSearchPage from "./components/meal/page/MealByIngredientSearchPage";

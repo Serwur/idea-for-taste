@@ -1,0 +1,17 @@
+@import "./variables.scss";
+
+.form-group {
+    .form-control {
+        &:focus {
+            box-shadow: 0px 0px 2px 2px $--main-color-lightest-70 !important;
+        }
+    }
+}
+
+.form-group.has-error {
+    .form-control {
+        &:focus {
+            box-shadow: 0px 0px 2px 2px $--err-color-70 !important;
+        }
+    }
+}
