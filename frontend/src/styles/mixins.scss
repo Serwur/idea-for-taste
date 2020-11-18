@@ -4,36 +4,36 @@
 @mixin define-img-sizes($name, $xs, $sm, $md, $lg, $xl) {
   @include media-breakpoint-up(xs) {
     img.#{$name} {
-      width: $xs;
-      height: auto;
+      width: auto;
+      height: $xs;
     }
   }
 
   @include media-breakpoint-up(sm) {
     img.#{$name}-sm {
-      width: $sm;
-      height: auto;
+      width: auto;
+      height: $sm;
     }
   }
 
   @include media-breakpoint-up(md) {
     img.#{$name}-md {
-      width: $md;
-      height: auto;
+      width: auto;
+      height: $md;
     }
   }
 
   @include media-breakpoint-up(lg) {
     img.#{$name}-lg {
-      width: $lg;
-      height: auto;
+      width: auto;
+      height: $lg;
     }
   }
 
   @include media-breakpoint-up(xl) {
     img.#{$name}-xl {
-      width: $xl;
-      height: auto;
+      width: auto;
+      height: $xl;
     }
   }
 }

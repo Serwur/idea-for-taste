@@ -21,7 +21,8 @@ html {
   font-weight: bold;
 }
 
-.miss-ingr, .help-block {
+.miss-ingr,
+.help-block {
   color: red;
 }
 
@@ -29,7 +30,8 @@ html {
   border-color: var(--main-color-lighter);
 }
 
-.has-error > input, .has-error > input:focus {
+.has-error > input,
+.has-error > input:focus {
   border-color: red;
   border-width: 1px;
   background: rgba(255, 0, 0, 0.05);
@@ -99,7 +101,8 @@ html {
   padding: 0.75rem;
 }
 
-.creation-tab:hover:not(.not-visited), .creation-tab.current:hover:not(.not-visited) {
+.creation-tab:hover:not(.not-visited),
+.creation-tab.current:hover:not(.not-visited) {
   background-color: white;
   color: var(--main-color);
   border: 0.1rem var(--main-color) solid;
@@ -113,7 +116,8 @@ html {
   padding: 0.4rem;
 }
 
-.creation-tab:focus:active, .creation-tab:focus {
+.creation-tab:focus:active,
+.creation-tab:focus {
   outline: none;
 }
 
@@ -153,4 +157,13 @@ html {
 
 .nav-pills li a:hover {
   text-decoration: none;
+}
+
+.img-view {
+  object-fit: cover;
+  overflow: hidden;
+  padding: 0;
+}
+.img-view img {
+  margin: auto;
 }

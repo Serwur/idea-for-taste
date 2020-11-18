@@ -7,30 +7,30 @@
   padding: 0;
 }
 .ingredient img.ingredient-img {
-  width: 240px;
-  height: auto;
+  width: auto;
+  height: 200px;
 }
 @media (min-width: 576px) {
   .ingredient img.ingredient-img-sm {
-    width: 278px;
-    height: auto;
+    width: auto;
+    height: 220px;
   }
 }
 @media (min-width: 768px) {
   .ingredient img.ingredient-img-md {
-    width: 364px;
-    height: auto;
+    width: auto;
+    height: 240px;
   }
 }
 @media (min-width: 992px) {
   .ingredient img.ingredient-img-lg {
-    width: 450px;
-    height: auto;
+    width: auto;
+    height: 270px;
   }
 }
 @media (min-width: 1200px) {
   .ingredient img.ingredient-img-xl {
-    width: 500px;
-    height: auto;
+    width: auto;
+    height: 300px;
   }
 }

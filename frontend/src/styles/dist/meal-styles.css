@@ -7,30 +7,30 @@
   padding-right: 0.5rem;
 }
 .meal img.meal-img {
-  width: 265px;
-  height: auto;
+  width: auto;
+  height: 256px;
 }
 @media (min-width: 576px) {
   .meal img.meal-img-sm {
-    width: 298px;
-    height: auto;
+    width: auto;
+    height: 278px;
   }
 }
 @media (min-width: 768px) {
   .meal img.meal-img-md {
-    width: 384px;
-    height: auto;
+    width: auto;
+    height: 360px;
   }
 }
 @media (min-width: 992px) {
   .meal img.meal-img-lg {
-    width: 461px;
-    height: auto;
+    width: auto;
+    height: 428px;
   }
 }
 @media (min-width: 1200px) {
   .meal img.meal-img-xl {
-    width: 540px;
-    height: auto;
+    width: auto;
+    height: 452px;
   }
 }

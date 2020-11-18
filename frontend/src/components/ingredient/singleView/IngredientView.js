@@ -7,6 +7,7 @@ import ingrImg from "./../../../img/ingredient.jpg";
 import { createIngredient } from "../../../utility/ingredients-funs";
 import history from "../../../history";
 import { NAV_URLS } from "../../../utility/constants";
+import ImageView from "../../common/ImageView";
 
 const IngredientView = () => {
     const parsedParams = useRouteMatch("/ingredient/:id");
@@ -33,10 +34,10 @@ const IngredientView = () => {
                 </div>
             </div>
             <div className="row m-3">
-                <div className="col p-0 m-0 text-center">
-                    <img src={ingrImg} alt={`${ingredient.name}`}
-                        className="ingredient-img ingredient-img-sm ingredient-img-md ingredient-img-lg ingredient-img-xl" />
-                </div>
+                <ImageView imgSrc={ingrImg}
+                    alt={`${ingredient.name}`}
+                    imgSizeClass="ingredient-img"
+                />
             </div>
             <div className="row">
                 <button className="col btn btn-outline-primary p-1 m-1"

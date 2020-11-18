@@ -6,8 +6,10 @@ import { useRouteMatch } from "react-router-dom";
 
 import mealImg from "../../../img/meal.jpeg";
 import { NAV_URLS } from "../../../utility/constants";
+import ImageView from "../../common/ImageView";
+import { connect } from "react-redux";
 
-const MealView = () => {
+const MealView = (props) => {
     const parsedParams = useRouteMatch("/meal/:id");
     if (parsedParams) {
         const mealId = parsedParams.params.id;
@@ -24,11 +26,13 @@ const MealView = () => {
                 </div>
             </div>
             <div className="row m-3">
-                <div className="col text-center">
-                    <img src={mealImg}
-                        alt={`${meal.name}`}
-                        className="meal-img-xl meal-img-lg meal-img-md meal-img-sm meal-img" />
-                </div>
+                <ImageView imgSrc={mealImg}
+                    alt={`${meal.name}`}
+                    imgSizeClass="meal-img"
+                />
+            </div>
+            <div className="row pb-2">
+                <button className="col btn btn-outline-primary">Add to favourites ⭐</button>
             </div>
             <div className="row border-top pt-2">
                 <div className="col-6 text-left">
@@ -123,7 +127,13 @@ const MEAL_TIME_TYPE = {
     BAKE: "bake"
 };
 
-export default MealView;
+function mapStateToProps(state) {
+    return {
+        isAuthenticated: state.auth.isAuthenticated
+    }
+};
+
+export default connect(mapStateToProps, {})(MealView);
 
 function createTestMeal() {
     return {

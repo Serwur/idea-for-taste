@@ -15,3 +15,6 @@ export const NAV_URLS = {
     MEAL: "/meal",
     INGREDIENT: "/ingredient"
 }
+
+export const BOOTSTRAP_SIZE_NAMES = ["", "sm", "md", "lg", "xl"];
+export const BOOTSTRAP_DASH_SIZE_NAMES = ["", "-sm", "-md", "-lg", "-xl"];

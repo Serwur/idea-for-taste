@@ -11,10 +11,10 @@
   }
   @include define-img-sizes(
     "ingredient-img",
+    200px,
+    220px,
     240px,
-    278px,
-    364px,
-    450px,
-    500px
+    270px,
+    300px
   );
 }
