@@ -4,7 +4,7 @@ const Sequelize = require("sequelize");
 const db = require("../database/db");
 
 module.exports = db.sequelize.define(
-    "meal",
+    "operation_history",
     {
         id: {
             autoIncrement: true,
@@ -12,32 +12,20 @@ module.exports = db.sequelize.define(
             allowNull: false,
             primaryKey: true,
         },
-        name: {
-            type: Sequelize.STRING(128),
+        operation: {
+            type: Sequelize.INTEGER.UNSIGNED,
             allowNull: false,
         },
-        serves: {
-            type: Sequelize.INTEGER.UNSIGNED,
-            allowNull: true,
-        },
-        total_time: {
-            type: Sequelize.INTEGER.UNSIGNED,
-            allowNull: true,
-        },
-        description: {
-            type: Sequelize.STRING(512),
-            allowNull: false,
-        },
-        sys_create_date: {
+        operation_date: {
             type: Sequelize.DATE,
             allowNull: false,
             defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
         },
-        sys_update_date: {
-            type: Sequelize.DATE,
+        new_object_status: {
+            type: Sequelize.INTEGER.UNSIGNED,
             allowNull: true,
         },
-        creator_id: {
+        user_id: {
             type: Sequelize.BIGINT.UNSIGNED,
             allowNull: true,
             references: {
@@ -47,24 +35,13 @@ module.exports = db.sequelize.define(
                 key: "id",
             },
         },
-        difficulty_id: {
-            type: Sequelize.BIGINT.UNSIGNED,
+        entry_point: {
+            type: Sequelize.STRING(32),
             allowNull: true,
-            references: {
-                model: {
-                    tableName: "difficulty",
-                },
-                key: "id",
-            },
-        },
-        status: {
-            type: Sequelize.INTEGER.UNSIGNED,
-            allowNull: true,
-            defaultValue: 1,
         },
     },
     {
         Sequelize,
-        tableName: "meal",
+        tableName: "operation_history",
     }
 );

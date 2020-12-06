@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/server.js",
-    "sa": "sequelize-auto -h localhost -d idea_for_meal -u root --dialect mysql"
+    "sa": "sequelize-auto -h localhost -d idea_for_taste -u root -x lolpop0294 --dialect mysql"
   },
   "author": "",
   "license": "ISC",

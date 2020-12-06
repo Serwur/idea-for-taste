@@ -6,7 +6,13 @@ const sequelize = new Sequelize(
     config.SCHEMA,
     config.LOGIN,
     config.PASSWORD,
-    config.CONNECTION
+    {
+        host: config.CONNECTION,
+        dialect: config.DIALECT,
+        define: {
+            timestamps: false
+        }
+    }
 );
 
 db.sequelize = sequelize;

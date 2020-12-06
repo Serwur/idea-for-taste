@@ -4,7 +4,7 @@ const Sequelize = require("sequelize");
 const db = require("../database/db");
 
 module.exports = db.sequelize.define(
-    "difficulty",
+    "dictionary_translation",
     {
         id: {
             autoIncrement: true,
@@ -12,14 +12,25 @@ module.exports = db.sequelize.define(
             allowNull: false,
             primaryKey: true,
         },
+        type: {
+            type: Sequelize.STRING(32),
+            allowNull: false,
+        },
         code: {
             type: Sequelize.STRING(32),
             allowNull: false,
-            unique: true,
+        },
+        language: {
+            type: Sequelize.STRING(3),
+            allowNull: false,
+        },
+        translation: {
+            type: Sequelize.STRING(256),
+            allowNull: false,
         },
     },
     {
         Sequelize,
-        tableName: "difficulty",
+        tableName: "dictionary_translation",
     }
 );
