@@ -40,6 +40,7 @@ create table user (
 create table ingredient (
 	id bigint unsigned primary key not null auto_increment,
     name varchar(128) not null,
+    kcal float unsigned not null default 0,
     carbohydrate float not null default 0,
     protein float not null default 0,
     fat float not null default 0,
@@ -65,6 +66,7 @@ create table ingredient (
 create table meal (
 	id bigint unsigned primary key not null auto_increment,
     name varchar(128) not null,
+    kcal float unsigned not null default 0,
     serves tinyint unsigned,
     total_time smallint unsigned,
     description varchar(512) not null,
