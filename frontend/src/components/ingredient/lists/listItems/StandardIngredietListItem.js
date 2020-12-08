@@ -7,18 +7,24 @@ import history from "../../../../history";
 import { NAV_URLS } from "../../../../utility/constants";
 
 export default function StandardIngredietListItem({ ingredient }) {
-    const { id, name } = ingredient; 
-    // , alcohol, carbohydrate, fat, organic_acid, protein, roughage, salt, sugar, water
-    const searchForMeals = () => {
-        history.push(`${NAV_URLS.FOUND_MEALS}/${id}`)
-    }
+    const { id, name, kcal } = ingredient;
+
+    const URL_FOUND_MEALS = `${NAV_URLS.FOUND_MEALS}/${id}`;
+    const URL_INGREDIENT_VIEW = `${NAV_URLS.INGREDIENT}/${id}`;
 
     return (
         <div className="container m-2 ingredient-item" width="100px">
-            <div className="row ingr-item" >
-                <div className="col-9 p-2 clickable" onClick={searchForMeals}>
+            <div className="row ingr-item">
+                <div
+                    className="col-9 p-2 clickable"
+                    onClick={() => history.push(URL_INGREDIENT_VIEW)}
+                >
                     <div className="col-3">
-                        <img src={missingImage} alt={name} className="ingr-img" />
+                        <img
+                            src={missingImage}
+                            alt={name}
+                            className="ingr-img"
+                        />
                     </div>
                     <div className="col-9">
                         <h4>{name}</h4>
@@ -26,7 +32,8 @@ export default function StandardIngredietListItem({ ingredient }) {
                     </div>
                 </div>
                 <div className="col-3 text-right">
-                    <Link to="/">Find meals</Link><br />
+                    <Link to={URL_FOUND_MEALS}>Find meals</Link>
+                    <br />
                     <Link to="/">Add to ingredient list</Link>
                 </div>
             </div>
@@ -35,5 +42,5 @@ export default function StandardIngredietListItem({ ingredient }) {
 }
 
 StandardIngredietListItem.propTypes = {
-    ingredient: PropTypes.object.isRequired
+    ingredient: PropTypes.object.isRequired,
 };

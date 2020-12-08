@@ -12,6 +12,11 @@ module.exports = db.sequelize.define(
             allowNull: false,
             primaryKey: true,
         },
+        kcal: {
+            type: Sequelize.FLOAT,
+            allowNull: false,
+            defaultValue: 0,
+        },
         name: {
             type: Sequelize.STRING(128),
             allowNull: false,
@@ -85,6 +90,11 @@ module.exports = db.sequelize.define(
             allowNull: true,
             defaultValue: 1,
         },
+        description: {
+            type: Sequelize.STRING(1024),
+            allowNull: true,
+            defaultValue: ""
+        }
     },
     {
         Sequelize,

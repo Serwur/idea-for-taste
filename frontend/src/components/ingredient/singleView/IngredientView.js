@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { round, toInteger } from "lodash";
 import { useRouteMatch } from "react-router-dom";
+import ReactPlaceHolder from "react-placeholder";
+import "react-placeholder/lib/reactPlaceholder.css";
 
 import ingrImg from "./../../../img/ingredient.jpg";
 import { createIngredient } from "../../../utility/ingredients-funs";
@@ -9,16 +11,29 @@ import history from "../../../history";
 import { NAV_URLS } from "../../../utility/constants";
 import ImageView from "../../common/singleView/ImageView";
 import TitleView from "../../common/singleView/TitleView";
+import { getIngredientById } from "../../../services/ingredient.service";
 
 const IngredientView = () => {
     const parsedParams = useRouteMatch("/ingredient/:id");
+    const [ingredient, setIngredient] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
 
     let ingredientId = null;
 
     if (parsedParams) ingredientId = parsedParams.params.id;
     else history.push("/not-found-404");
 
-    const ingredient = createTestIngredient();
+    useEffect(() => {
+        getIngredientById(ingredientId)
+            .then((res) => {
+                setIngredient(res.data);
+                setIsLoading(false);
+            })
+            .catch(() => {
+                history.push("/not-found-404");
+            });
+    }, [setIsLoading, setIngredient]);
+
     const viewId = `ingredient-view-${ingredientId}`;
 
     const showMeals = (ingrId) => {
@@ -27,71 +42,127 @@ const IngredientView = () => {
 
     return (
         <div className="container ingredient single-view">
-            <TitleView viewId={viewId} title={ingredient.name} />
+            <ReactPlaceHolder
+                className="mb-3"
+                type="text"
+                rows={1}
+                ready={!isLoading}
+            >
+                <TitleView viewId={viewId} title={ingredient.name} />
+            </ReactPlaceHolder>
             <div className="row pb-2">
-                <ImageView
-                    className="col text-center"
-                    viewId={viewId}
-                    imgSrc={ingrImg}
-                    alt={`${ingredient.name}`}
-                    imgSizeClass="ingredient-img"
-                    title={ingredient.name}
-                />
+                <ReactPlaceHolder
+                    className="m-auto"
+                    type="rect"
+                    style={{ width: 280, height: 200 }}
+                    ready={!isLoading}
+                >
+                    <ImageView
+                        className="col text-center"
+                        viewId={viewId}
+                        imgSrc={ingrImg}
+                        alt={`${ingredient.name}`}
+                        imgSizeClass="ingredient-img"
+                        title={ingredient.name}
+                    />
+                </ReactPlaceHolder>
             </div>
             <div className="row">
-                <button className="col btn btn-outline-primary p-1 m-1"
-                    onClick={() => showMeals(ingredientId)}>
-                    Meals <span role="img" aria-label="meals-icon">🥘</span>
+                <button
+                    className="col btn btn-outline-primary p-1 m-1"
+                    onClick={() => showMeals(ingredientId)}
+                >
+                    Meals{" "}
+                    <span role="img" aria-label="meals-icon">
+                        🥘
+                    </span>
                 </button>
                 <button className="col btn btn-outline-primary p-1 m-1">
-                    Add to list <span role="img" aria-label="add-to-list-icon">➕</span>
+                    Add to list{" "}
+                    <span role="img" aria-label="add-to-list-icon">
+                        ➕
+                    </span>
                 </button>
             </div>
             <div className="row">
                 <div className="col-xl-9 col-md-8 col-sm-7 col-12 p-sm-1 p-0">
                     <h4>Description</h4>
-                    <p className="description">{ingredient.description}</p>
+                    <ReactPlaceHolder type="text" rows={8} ready={!isLoading}>
+                        <p className="description">{ingredient.description}</p>
+                    </ReactPlaceHolder>
                 </div>
                 <div className="col-xl-3 col-md-4 col-sm-5 col-12 p-sm-1 p-0">
-                    <IngredientNutritionalValues ingredient={ingredient} />
+                    <IngredientNutritionalValues
+                        ingredient={ingredient}
+                        isLoading={isLoading}
+                    />
                 </div>
             </div>
         </div>
     );
 };
 
-const IngredientNutritionalValues = ({ ingredient }) => {
+/**
+ * @param {Object} props
+ * @param {Ingredient} props.ingredient
+ * @param {Ingredient} props.isLoading
+ */
+const IngredientNutritionalValues = ({ ingredient, isLoading }) => {
     return (
         <div className="text-sm-right">
             <h4>Nutritional values</h4>
             <div className="list-group pb-2 text-sm-right">
-                <NutritionalValue name="Protein" value={ingredient.protein} />
-                <NutritionalValue name="Fat" value={ingredient.fat} />
-                <NutritionalValue name="Carbohydrate" value={ingredient.carbohydrate} />
-                <NutritionalValue name="Organic Acid" value={ingredient.organic_acid} />
-                <NutritionalValue name="Roughage" value={ingredient.roughage} />
-                <NutritionalValue name="Salt" value={ingredient.salt} />
-                <NutritionalValue name="Sugar" value={ingredient.sugar} />
-                <NutritionalValue name="Water" value={ingredient.water} />
-                <NutritionalValue name="Alcohol" value={ingredient.alcohol} />
+                <ReactPlaceHolder type="text" rows={9} ready={!isLoading}>
+                    <NutritionalValue
+                        name="Protein"
+                        value={ingredient.protein}
+                    />
+                    <NutritionalValue name="Fat" value={ingredient.fat} />
+                    <NutritionalValue
+                        name="Carbohydrate"
+                        value={ingredient.carbohydrate}
+                    />
+                    <NutritionalValue
+                        name="Organic Acid"
+                        value={ingredient.organic_acid}
+                    />
+                    <NutritionalValue
+                        name="Roughage"
+                        value={ingredient.roughage}
+                    />
+                    <NutritionalValue name="Salt" value={ingredient.salt} />
+                    <NutritionalValue name="Sugar" value={ingredient.sugar} />
+                    <NutritionalValue name="Water" value={ingredient.water} />
+                    <NutritionalValue
+                        name="Alcohol"
+                        value={ingredient.alcohol}
+                    />
+                </ReactPlaceHolder>
             </div>
             <h5>Total calories</h5>
-            <p>{round(Math.random() * 750 + 50, 1)} / 100g</p>
+            <ReactPlaceHolder type="text" ready={!isLoading}>
+                <p>{ingredient.kcal} / 100g</p>
+            </ReactPlaceHolder>
         </div>
     );
 };
 
 IngredientNutritionalValues.propTypes = {
-    ingredient: PropTypes.object.isRequired
+    ingredient: PropTypes.object.isRequired,
+    isLoading: PropTypes.bool.isRequired,
 };
 
 const NutritionalValue = ({ name, value }) => {
-    return <div className="list-group-item">{name}: {value}g / 100g</div>;
+    return (
+        <div className="list-group-item">
+            {name}: {value}g / 100g
+        </div>
+    );
 };
 
 NutritionalValue.propTypes = {
     name: PropTypes.string.isRequired,
-    value: PropTypes.number.isRequired
+    value: PropTypes.number,
 };
 
 function createTestIngredient() {
@@ -105,7 +176,7 @@ function createTestIngredient() {
         salt: round(Math.random() * 22, 2),
         sugar: round(Math.random() * 11, 2),
         alcohol: round(Math.random() * 15, 2),
-        water: round(Math.random() * 13, 2)
+        water: round(Math.random() * 13, 2),
     });
 
     return {

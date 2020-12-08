@@ -54,6 +54,7 @@ create table ingredient (
     sys_update_date datetime,
     creator_id bigint unsigned,
     status tinyint unsigned default (1),
+    description varchar(1024) default '',
     
     foreign key (creator_id) references user(id) on delete set null,
     
