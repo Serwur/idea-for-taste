@@ -4,7 +4,7 @@ const Sequelize = require("sequelize");
 const db = require("../database/db");
 
 module.exports = db.sequelize.define(
-    "meal_component",
+    "point_prepare_time",
     {
         id: {
             autoIncrement: true,
@@ -12,43 +12,27 @@ module.exports = db.sequelize.define(
             allowNull: false,
             primaryKey: true,
         },
-        ingredient_id: {
+        prepare_point_id: {
             type: Sequelize.BIGINT.UNSIGNED,
             allowNull: false,
             references: {
                 model: {
-                    tableName: "ingredient",
+                    tableName: "meal_prepare_point",
                 },
                 key: "id",
             },
         },
-        meal_id: {
-            type: Sequelize.BIGINT.UNSIGNED,
-            allowNull: false,
-            references: {
-                model: {
-                    tableName: "meal",
-                },
-                key: "id",
-            },
-        },
-        ingredient_unit_id: {
+        time: {
             type: Sequelize.INTEGER.UNSIGNED,
             allowNull: false,
-            references: {
-                model: {
-                    tableName: "ingredient_unit",
-                },
-                key: "id",
-            },
         },
-        amount: {
-            type: Sequelize.FLOAT,
+        is_about: {
+            type: Sequelize.INTEGER(1),
             allowNull: false,
         },
     },
     {
         Sequelize,
-        tableName: "meal_component",
+        tableName: "point_prepare_time",
     }
 );

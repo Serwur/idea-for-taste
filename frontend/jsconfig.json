@@ -1,6 +1,4 @@
 {
-    "include": [
-        "*.js"
-    ],
+    "include": ["**/*.js"],
     "exclude": []
 }
