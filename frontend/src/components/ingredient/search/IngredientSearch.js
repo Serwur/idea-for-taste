@@ -1,12 +1,16 @@
 import React from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import * as IngrUtils from "../../../utility/ingredients-funs";
 import IngredientSearchForm from "./IngredientSearchForm";
 import { findIngredientsByName } from "../../../services/ingredient.service";
-import { setLastSearchName, setLastSearchResult } from "../../../actions/ingredientSearchAction";
+import {
+    setLastSearchName,
+    setLastSearchResult,
+} from "../../../actions/ingredientSearchAction";
 import IngredientSearchResult from "./IngredientSearchResult";
+import ChoosenIngredientsList from "../lists/ChoosenIngredientsList";
 
 class IngredientSearch extends React.Component {
     constructor(props) {
@@ -43,30 +47,32 @@ class IngredientSearch extends React.Component {
             lastSearchName: searchInput,
             result: [],
             loading: true,
-            isConnectionError: false
+            isConnectionError: false,
         });
 
-        this.props.findIngredientsByName(searchInput).then(
-            res => {
+        this.props
+            .findIngredientsByName(searchInput)
+            .then((res) => {
                 const foundIngredients = res.data;
-                const sortedIngredients = IngrUtils.sortIngredientsByScore(foundIngredients, this.state.prevEntry);
+                const sortedIngredients = IngrUtils.sortIngredientsByScore(
+                    foundIngredients,
+                    this.state.prevEntry
+                );
                 this.props.setLastSearchResult({
                     lastSearchName: searchInput,
                     result: sortedIngredients,
                     loading: false,
-                    isConnectionError: false
+                    isConnectionError: false,
                 });
-            }
-        ).catch(
-            () => {
+            })
+            .catch(() => {
                 this.props.setLastSearchResult({
                     lastSearchName: searchInput,
                     result: [],
                     loading: false,
-                    isConnectionError: true
+                    isConnectionError: true,
                 });
-            }
-        );
+            });
     }
 
     render() {
@@ -74,12 +80,15 @@ class IngredientSearch extends React.Component {
 
         return (
             <div className="m-2 pt-1">
+                <ChoosenIngredientsList />
                 <IngredientSearchForm
                     submitQuery={this.submitQuery}
                     changeTerm={this.changeSearch}
                     inputRef={this.input}
                 />
-                <IngredientSearchResult listItemProps={this.props.listItemProps} />
+                <IngredientSearchResult
+                    listItemProps={this.props.listItemProps}
+                />
             </div>
         );
     }
@@ -88,15 +97,19 @@ class IngredientSearch extends React.Component {
 IngredientSearch.propTypes = {
     setLastSearchResult: PropTypes.func.isRequired,
     findIngredientsByName: PropTypes.func.isRequired,
-    listItemProps: PropTypes.object
+    listItemProps: PropTypes.object,
 };
 
 function mapStateToProps(state) {
     const { result, lastSearchName } = state;
     return {
         lastSearchName: lastSearchName,
-        result: result
+        result: result,
     };
 }
 
-export default connect(mapStateToProps, { findIngredientsByName, setLastSearchResult, setLastSearchName })(IngredientSearch);
+export default connect(mapStateToProps, {
+    findIngredientsByName,
+    setLastSearchResult,
+    setLastSearchName,
+})(IngredientSearch);

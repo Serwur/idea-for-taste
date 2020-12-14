@@ -1,8 +1,9 @@
 @import "./mixins.scss";
+@import "./variables.scss";
 
 .top-navbar-offset {
   display: block;
-  margin-top: 56px;
+  margin-top: $--top-navbar-height;
 }
 
 .navbar {

@@ -20,7 +20,7 @@ class SignInForm extends React.Component {
             login: "",
             password: "",
             validationError: {},
-            isLoading: false
+            isLoading: false,
         };
 
         this.onSubmit = this.onSubmit.bind(this);
@@ -44,13 +44,13 @@ class SignInForm extends React.Component {
             this.setState({ validationError: {}, isLoading: true });
             setTimeout(() => {
                 this.props.signInRequest(this.state).then(
-                    res => {
+                    (res) => {
                         hideSignInModal();
                         history.push(NAV_URLS.HOME);
                     },
-                    err => {
+                    (err) => {
                         let errorMessage = null;
-                        
+
                         if (err.response) {
                             errorMessage = err.response.data.error;
                         } else {
@@ -59,9 +59,9 @@ class SignInForm extends React.Component {
 
                         this.setState({
                             validationError: {
-                                general: errorMessage
+                                general: errorMessage,
                             },
-                            isLoading: false
+                            isLoading: false,
                         });
                     }
                 );
@@ -71,7 +71,7 @@ class SignInForm extends React.Component {
 
     onChange(event) {
         this.setState({
-            [event.target.name]: event.target.value
+            [event.target.name]: event.target.value,
         });
     }
 
@@ -82,10 +82,20 @@ class SignInForm extends React.Component {
         return (
             <>
                 {isLoading && renderLoading(Loading)}
-                <form className="d-flex flex-column align-items-center"
-                    onSubmit={this.onSubmit}>
-                    {validationError.general && <div className="alert alert-danger">{validationError.general}</div>}
-                    {flashMessages.length > 0 && <div className="alert alert-danger">{flashMessages[0].text}</div>}
+                <form
+                    className="d-flex flex-column align-items-center"
+                    onSubmit={this.onSubmit}
+                >
+                    {validationError.general && (
+                        <div className="alert alert-danger">
+                            {validationError.general}
+                        </div>
+                    )}
+                    {flashMessages.length > 0 && (
+                        <div className="alert alert-danger">
+                            {flashMessages[0].text}
+                        </div>
+                    )}
                     <TextFieldGroup
                         field="login"
                         label="Login or E-mail"
@@ -102,15 +112,24 @@ class SignInForm extends React.Component {
                         type="password"
                     />
                     <div className="form-group">
-                        <button type="submit"
+                        <button
+                            type="submit"
                             value="sign-in"
                             className="btn btn-primary"
-                            disabled={isLoading}>
+                            disabled={isLoading}
+                        >
                             Login
                         </button>
                     </div>
-                    <Link to="/register" onClick={() => hideSignInModal()}>Don't have an account?</Link>
-                    <Link to="/account-recover" onClick={() => hideSignInModal()}>Forgot a password?</Link>
+                    <Link to="/register" onClick={() => hideSignInModal()}>
+                        Don't have an account?
+                    </Link>
+                    <Link
+                        to="/account-recover"
+                        onClick={() => hideSignInModal()}
+                    >
+                        Forgot a password?
+                    </Link>
                 </form>
             </>
         );
@@ -119,13 +138,13 @@ class SignInForm extends React.Component {
 
 SignInForm.propTypes = {
     signInRequest: PropTypes.func.isRequired,
-    flashMessages: PropTypes.array
+    flashMessages: PropTypes.array,
 };
 
 function mapStateToProps(state) {
     return {
-        flashMessages: state.flashMessages
-    }
+        flashMessages: state.flashMessages,
+    };
 }
 
 export default connect(mapStateToProps, { signInRequest })(SignInForm);

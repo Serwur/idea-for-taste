@@ -15,7 +15,6 @@ import "./styles/dist/form-field-group.css";
 import "./styles/dist/single-view.css";
 
 import IngredientSearch from "./components/ingredient/search/IngredientSearch";
-import MealByIngredientSearchPage from "./components/meal/page/MealByIngredientSearchPage";
 import StandardIngredietListItem from "./components/ingredient/lists/listItems/StandardIngredietListItem";
 import FoundMealsPage from "./components/meal/page/FoundMealsPage";
 import TopNavbar from "./components/navbars/TopNavbar";
@@ -59,10 +58,6 @@ export default function App() {
                                     }}
                                 />
                             )}
-                        />
-                        <Route
-                            path={NAV_URLS.MEAL_BY_INGREDIENT_SEARCH}
-                            component={MealByIngredientSearchPage}
                         />
                         <Route
                             path={NAV_URLS.FOUND_MEALS}

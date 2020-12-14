@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import missingImage from "./../../../../img/missing_image.png";
 import history from "../../../../history";
 import { NAV_URLS } from "../../../../utility/constants";
-
-export default function StandardIngredietListItem({ ingredient }) {
+import { addIngredient } from "../../../../actions/ingredientListAction";
+function StandardIngredietListItem(props) {
+    const { addIngredient, ingredient } = props;
     const { id, name, kcal } = ingredient;
 
     const URL_FOUND_MEALS = `${NAV_URLS.FOUND_MEALS}/${id}`;
@@ -28,13 +30,15 @@ export default function StandardIngredietListItem({ ingredient }) {
                     </div>
                     <div className="col-9">
                         <h4>{name}</h4>
-                        <p>100 kcal/100g</p>
+                        <p>{kcal} kcal/100g</p>
                     </div>
                 </div>
                 <div className="col-3 text-right">
                     <Link to={URL_FOUND_MEALS}>Find meals</Link>
                     <br />
-                    <Link to="/">Add to ingredient list</Link>
+                    <Link to="/" onClick={() => addIngredient(ingredient)}>
+                        Add to list
+                    </Link>
                 </div>
             </div>
         </div>
@@ -44,3 +48,5 @@ export default function StandardIngredietListItem({ ingredient }) {
 StandardIngredietListItem.propTypes = {
     ingredient: PropTypes.object.isRequired,
 };
+
+export default connect(null, { addIngredient })(StandardIngredietListItem);

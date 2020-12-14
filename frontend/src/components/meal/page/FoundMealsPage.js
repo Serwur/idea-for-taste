@@ -6,25 +6,33 @@ import MealItem from "../common/MealItem";
 export default function FoundMealsPage() {
     const parsedParams = useRouteMatch("/found-meals/:ingrIds");
     const ingrIds = parsedParams.params.ingrIds;
-    const ownedIngrIds = new Set(ingrIds.split(",").map(ingrId => Number(ingrId)));
+    const ownedIngrIds = new Set(
+        ingrIds.split(",").map((ingrId) => Number(ingrId))
+    );
 
-    const [fetchedData, setFetchedData] = useState({ results: new Map(), isLoading: true, error: null });
+    const [fetchedData, setFetchedData] = useState({
+        results: new Map(),
+        isLoading: true,
+        error: null,
+    });
     const itemsPerRow = useItemsPerRows();
 
     useEffect(() => {
         if (fetchedData.isLoading) {
             const mealCompUrl = `${DATABASE_URL}/meal/ids?ingrIds=${ingrIds}`;
             fetch(mealCompUrl)
-                .then(response => response.json())
-                .then(data => {
+                .then((response) => response.json())
+                .then((data) => {
                     const results = new Map();
-                    data.forEach(meal => results.set(meal.id, meal));
+                    data.forEach((meal) => results.set(meal.id, meal));
                     setFetchedData({ isLoading: false, results: results });
                 })
-                .catch(err => {
-                    setFetchedData({ error: "Ups... something went wrong", isLoading: false });
+                .catch((err) => {
+                    setFetchedData({
+                        error: "Ups... something went wrong",
+                        isLoading: false,
+                    });
                 });
-
         }
     }, [fetchedData, ingrIds]);
 
@@ -34,19 +42,26 @@ export default function FoundMealsPage() {
 
     return (
         <div className="container-fluid align-content-center">
-            {renderMeals([...fetchedData.results].map(entry => entry[1]), ownedIngrIds, itemsPerRow)}
+            {renderMeals(
+                [...fetchedData.results].map((entry) => entry[1]),
+                ownedIngrIds,
+                itemsPerRow
+            )}
         </div>
     );
 }
 
 function useItemsPerRows() {
-    const [itemsPerRow, setItemsPerRow] = useState(getRenderedItemsPerRow(window.innerWidth));
+    const [itemsPerRow, setItemsPerRow] = useState(
+        getRenderedItemsPerRow(window.innerWidth)
+    );
     useLayoutEffect(() => {
         const updateItemsPerRow = () => {
             setItemsPerRow(getRenderedItemsPerRow(window.innerWidth));
         };
-        window.addEventListener("resize", updateItemsPerRow);  
-        return () => window.removeEventListener("resize", getRenderedItemsPerRow);
+        window.addEventListener("resize", updateItemsPerRow);
+        return () =>
+            window.removeEventListener("resize", getRenderedItemsPerRow);
     }, []);
     return itemsPerRow;
 }
@@ -60,26 +75,32 @@ function getRenderedItemsPerRow(screenWidth) {
 }
 
 function renderMeals(meals, ownedIngrIds, itemsPerRow = 3) {
-    const mealItems = meals.map(meal => {
+    const mealItems = meals.map((meal) => {
         return renderMeal(meal, ownedIngrIds);
     });
 
     const splittedItems = splitIntoArrays(mealItems, itemsPerRow);
     let keyCount = 0;
-    return splittedItems.map(items => {
-        let key = `meal-row-${keyCount++}`;
+    return splittedItems.map((items) => {
+        const key = `meal-row-${keyCount++}`;
         return renderRow(items, key);
     });
 }
 
 function renderMeal(meal, ownedIngrIds) {
     const { meal_components } = meal;
-    const requiredIngrIds = new Set(meal_components.map(component => component.ingredient_id));
+    const requiredIngrIds = new Set(
+        meal_components.map((component) => component.ingredient_id)
+    );
 
-    return <MealItem key={meal.id}
-        meal={meal}
-        requiredIngredientsIds={requiredIngrIds}
-        ownedIngredientsIds={ownedIngrIds} />;
+    return (
+        <MealItem
+            key={meal.id}
+            meal={meal}
+            requiredIngredientsIds={requiredIngrIds}
+            ownedIngredientsIds={ownedIngrIds}
+        />
+    );
 }
 
 function renderRow(components, key) {
@@ -87,10 +108,15 @@ function renderRow(components, key) {
     let keyCount = 0;
     return (
         <div key={key} className="row">
-            {components.map(component => {
-                return <div key={`meal-item-${keyCount++}`} className={`col-${itemsCount}`}>
-                    {component}
-                </div>;
+            {components.map((component) => {
+                return (
+                    <div
+                        key={`meal-item-${keyCount++}`}
+                        className={`col-${itemsCount}`}
+                    >
+                        {component}
+                    </div>
+                );
             })}
         </div>
     );
@@ -99,7 +125,11 @@ function renderRow(components, key) {
 function splitIntoArrays(array, splitCount) {
     const splittedArrays = [];
 
-    for (let startIndex = 0; startIndex < array.length; startIndex += splitCount) {
+    for (
+        let startIndex = 0;
+        startIndex < array.length;
+        startIndex += splitCount
+    ) {
         let endIndex = startIndex + splitCount;
         endIndex = endIndex > array.length ? array.length : endIndex;
         splittedArrays.push(array.slice(startIndex, endIndex));

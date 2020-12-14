@@ -1,18 +1,27 @@
-import React from 'react'
+import React from "react";
 import $ from "jquery";
 
-import SignInForm from './SignInForm'
+import SignInForm from "./SignInForm";
 
 export default function SignInModal() {
     return (
-        <div id={SIGN_IN_MODAL_ID} aria-hidden="true"
-            role="dialog" className="modal fade"
-            aria-labelledby="signInModalTitle">
+        <div
+            id={SIGN_IN_MODAL_ID}
+            aria-hidden="true"
+            role="dialog"
+            className="modal fade"
+            aria-labelledby="signInModalTitle"
+        >
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                     <div className="modal-header">
                         <h4 className="modal-title">Sign in</h4>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <button
+                            type="button"
+                            className="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                        >
                             <span aria-hidden="true">x</span>
                         </button>
                     </div>
@@ -26,12 +35,12 @@ export default function SignInModal() {
 }
 
 export function showSignInModal() {
-    console.log("Showing modal")
+    console.log("Showing modal");
     changeModalView(true);
 }
 
 export function hideSignInModal() {
-    console.log("Hiding modal")
+    console.log("Hiding modal");
     changeModalView(false);
 }
 
