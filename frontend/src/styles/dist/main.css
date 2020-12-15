@@ -44,6 +44,7 @@ html {
 .ingr-img {
   width: auto;
   height: 64px;
+  border-radius: 2px;
 }
 
 .ingredient-item .row {
@@ -58,6 +59,9 @@ html {
 }
 
 .ingredient-item .clickable:hover {
+  background-color: var(--main-color-lighter);
+}
+.ingredient-item .clickable:hover * {
   background-color: var(--main-color-lighter);
 }
 

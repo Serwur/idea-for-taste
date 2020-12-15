@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 import PropTypes from "prop-types";
 
 export default class IngredientList extends React.Component {
     render() {
-        const {ItemComponent, itemProps} = this.props.listItemProps;
+        const { ItemComponent, itemProps } = this.props.listItemProps;
         let ingredients = [];
 
         if (this.props.location) {
@@ -13,15 +13,16 @@ export default class IngredientList extends React.Component {
         }
 
         return (
-            <div className="container">
-                <div className="row align-content list-group">
-                    {
-                        ingredients.map(ingr =>
+            <div className="container container-md">
+                <div className="row align-content">
+                    {ingredients.map((ingr) => (
+                        <div className="col-xl-4 col-md-6 col-12" key={ingr.id}>
                             <ItemComponent
-                                key={ingr.id}
                                 ingredient={ingr}
-                                props={itemProps} />)
-                    }
+                                props={itemProps}
+                            />
+                        </div>
+                    ))}
                 </div>
             </div>
         );
@@ -29,5 +30,5 @@ export default class IngredientList extends React.Component {
 }
 
 IngredientList.propTypes = {
-    listItemProps: PropTypes.object.isRequired
-}
+    listItemProps: PropTypes.object.isRequired,
+};
