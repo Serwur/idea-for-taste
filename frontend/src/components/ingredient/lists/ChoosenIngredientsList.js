@@ -40,8 +40,6 @@ function ChoosenIngredientsList(props) {
         }
     };
 
-    console.log(ingredients.size);
-
     return shouldRender() ? (
         <div
             id="ingredient-choosen-list"

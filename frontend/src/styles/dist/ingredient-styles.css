@@ -38,7 +38,6 @@
 .ingredient-choosen-list {
   position: fixed;
   top: 76px;
-  width: 50vw;
   height: 550px;
   min-height: 300px;
   background-color: white;
@@ -51,9 +50,18 @@
   transition: left 0.4s;
   transition-timing-function: ease;
   left: 0vw;
+  width: 85vw !important;
 }
 .ingredient-choosen-list.hide {
-  left: -47vw !important;
+  left: -80.9183673469vw !important;
+}
+@media (min-width: 768px) {
+  .ingredient-choosen-list {
+    width: 490px !important;
+  }
+  .ingredient-choosen-list.hide {
+    left: -470px !important;
+  }
 }
 .ingredient-choosen-list .container {
   margin: 0;
@@ -91,7 +99,7 @@
   position: relative;
   padding: 0;
   margin: 0;
-  width: 5%;
+  min-width: 20px;
   height: auto;
   border-radius: 0rem 1rem 1rem 0rem;
   background-color: #00b33c;

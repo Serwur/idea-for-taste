@@ -22,10 +22,17 @@
 
 .ingredient-choosen-list {
     $--list-height: 550px;
+    $--button-width: 20px;
+    $--list-width-md: 490px;
+    $--list-width-xs: 85vw;
+
+    @function get-vw($target) {
+        $list-max-width: (490 * 0.01) * 1px;
+        @return ($target / $list-max-width) * 1vw;
+    }
 
     position: fixed;
     top: $--top-navbar-height + 20px;
-    width: 50vw;
     height: $--list-height;
     min-height: 300px;
     background-color: white;
@@ -39,8 +46,16 @@
     transition-timing-function: ease;
     left: 0vw;
 
+    width: $--list-width-xs !important;
     &.hide {
-        left: -47vw !important;
+        left: -$--list-width-xs + get-vw($--button-width) !important;
+    }
+
+    @include media-breakpoint-up(md) {
+        width: $--list-width-md !important;
+        &.hide {
+            left: -$--list-width-md + $--button-width !important;
+        }
     }
 
     .container {
@@ -87,7 +102,7 @@
         position: relative;
         padding: 0;
         margin: 0;
-        width: 5%;
+        min-width: $--button-width;
         height: auto;
         border-radius: 0rem 1rem 1rem 0rem;
         background-color: $--main-color-lighter;

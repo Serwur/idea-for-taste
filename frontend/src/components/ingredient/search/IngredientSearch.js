@@ -76,8 +76,6 @@ class IngredientSearch extends React.Component {
     }
 
     render() {
-        console.log("Render...");
-
         return (
             <div className="m-2 pt-1">
                 <ChoosenIngredientsList />

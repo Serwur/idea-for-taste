@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import "jquery";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
+import "react-toastify/dist/ReactToastify.css";
 
 import "./styles/dist/main.css";
 import "./styles/dist/meal-styles.css";
@@ -32,6 +33,7 @@ import SignInPage from "./components/login/page/SignInPage";
 import IngredientCreationPage from "./components/ingredient/creation/IngredientCreationPage";
 import MealView from "./components/meal/singleView/MealView";
 import IngredientView from "./components/ingredient/singleView/IngredientView";
+import { Slide, ToastContainer } from "react-toastify";
 
 const jwtToken = localStorage.getItem("jwtToken");
 
@@ -88,6 +90,18 @@ export default function App() {
                         <Route component={NotFound} />
                     </Switch>
                 </main>
+                <ToastContainer
+                    position="bottom-center"
+                    autoClose={1500}
+                    hideProgressBar
+                    newestOnTop={true}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    transition={Slide}
+                />
             </Router>
         </Provider>
     );
