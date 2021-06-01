@@ -27,15 +27,13 @@ function getSearchState({
     isConnectionError,
 }) {
     if (loading) return SEARCH_STATE.LOADING;
-    else {
-        if (result !== null) {
-            if (!lastSearchName) return SEARCH_STATE.ERROR_EMPTY_INPUT;
-            if (isConnectionError) return SEARCH_STATE.ERROR_FETCH;
-            if (result.length > 0) return SEARCH_STATE.SUCCESS;
-            if (result.length === 0) return SEARCH_STATE.ERROR_NO_RESULTS;
-        }
-        return SEARCH_STATE.NO_SEARCH;
+    if (result !== null) {
+        if (!lastSearchName) return SEARCH_STATE.ERROR_EMPTY_INPUT;
+        if (isConnectionError) return SEARCH_STATE.ERROR_FETCH;
+        if (result.length > 0) return SEARCH_STATE.SUCCESS;
+        if (result.length === 0) return SEARCH_STATE.ERROR_NO_RESULTS;
     }
+    return SEARCH_STATE.NO_SEARCH;
 }
 
 function render(searchState, { lastSearchName, result }, listItemProps) {

@@ -2,7 +2,7 @@ import Validator from "validator";
 import isEmpty from "lodash/isEmpty";
 
 export default function validateSignIn(data) {
-    let validationError = {};
+    const validationError = {};
 
     if (Validator.isEmpty(data.login)) {
         validationError.login = "This field is required";
@@ -14,6 +14,6 @@ export default function validateSignIn(data) {
 
     return {
         validationError,
-        isValid: isEmpty(validationError)
+        isValid: isEmpty(validationError),
     };
 }
